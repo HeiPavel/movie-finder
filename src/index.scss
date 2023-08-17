@@ -1,0 +1,31 @@
+html,
+body {
+  min-height: 100vh;
+  position: relative;
+  font-size: 18px;
+  margin: 0;
+}
+
+.movies-container {
+    margin: 0 auto;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 80%;
+    min-height: 400px;
+    .movie-card {
+        width: 200px;
+        height: 300px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    .button-container {
+        width: 200px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+}
