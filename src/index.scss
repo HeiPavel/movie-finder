@@ -6,6 +6,11 @@ body {
   margin: 0;
 }
 
+p {
+    padding: 0;
+    margin: 0;
+}
+
 .movies-container {
     margin: 0 auto;
     padding: 30px;
@@ -27,5 +32,52 @@ body {
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
+    }
+}
+
+.search-container {
+    height: 300px;
+    h2 {
+        text-align: center;
+    }
+    .form-container {
+        padding: 30px;
+        display: flex;
+        justify-content: flex-end;
+        .person {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            .actors-container {
+                position: relative;
+                .inner-container {
+                    width: 100%;
+                    position: absolute;
+                    max-height: 109px;
+                    overflow: scroll;
+                    -ms-overflow-style: none;  /* IE and Edge */
+                    scrollbar-width: none; /* Firefox */
+                    .actor-container {
+                        margin-bottom: 2px;
+                        width: 100%;
+                        height: 35px;
+                        display: flex;
+                        align-items: center;
+                        img {
+                            height: 100%;
+                            width: 35px;
+                        }
+                        p {
+                            text-align: center;
+                            flex-grow: 1;
+                        }
+                    }
+                }
+                .inner-container::-webkit-scrollbar { /* Chrome Safari */
+                    display: none;
+                }
+            }
+        }
     }
 }
