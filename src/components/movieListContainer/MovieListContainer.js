@@ -8,7 +8,7 @@ export const MovieListContainer = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(loadMovies({page: page}));
+        dispatch(loadMovies({page: page, title: 'fight'}));
     }, [dispatch, page]);
 
     return (

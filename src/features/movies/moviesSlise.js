@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import { fetchMovies } from "../../util/moviesRequest";
 
 export const loadMovies = createAsyncThunk('movies/loadMovies', 
-    async ({page}) => {
-        const response = await fetchMovies(page);
-        return response.data.results.map(movie => {
+    async (paramObj) => {
+        const response = await fetchMovies(paramObj);
+        return response.data.results.filter(movie => movie.poster_path).map(movie => {
             return {
                 title: movie.original_title,
                 overview: movie.overview,
