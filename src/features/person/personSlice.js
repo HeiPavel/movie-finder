@@ -18,17 +18,19 @@ export const personSlice = createSlice({
     name: 'person',
     initialState: {
         term: '',
-        actorId: '',
+        selectedActors: [],
         actors: []
     },
     reducers: {
         changeTerm: (state, action) => {
             state.term = action.payload;
-            state.actorId = ''
         },
-        selectActor: (state, action) => {
-            state.actorId = action.payload;
-        }, 
+        addActor: (state, action) => {
+            if (state.selectedActors.every(actor => actor.id !== action.payload.id)) state.selectedActors.push(action.payload);
+        },
+        removeActor: (state, action) => {
+            state.selectedActors = state.selectedActors.filter(actor => actor.id !== action.payload);
+        },
         clearActors: (state) => {
             state.actors = [];
         }
@@ -41,8 +43,10 @@ export const personSlice = createSlice({
     }
 });
 
-export const selectPerson = (state) => state.person;
+export const selectSearchTerm = (state) => state.person.term;
+export const selectActors = (state) => state.person.actors;
+export const selectSelectedActors = (state) => state.person.selectedActors;
 
-export const {changeTerm, selectActor, clearActors} = personSlice.actions;
+export const {changeTerm, addActor, removeActor, clearActors} = personSlice.actions;
 
 export default personSlice.reducer;

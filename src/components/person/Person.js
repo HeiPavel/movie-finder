@@ -1,18 +1,13 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectPerson, changeTerm, loadActors, clearActors } from "../../features/person/personSlice";
+import { selectSearchTerm, changeTerm, loadActors, clearActors } from "../../features/person/personSlice";
 import { ActorsContainer } from "../actorsContainer/ActorsContainer";
 
 export const Person = () => {
-    const {term} = useSelector(selectPerson);
+    const term = useSelector(selectSearchTerm);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        /*if (term) {
-            dispatch(loadActors(term));
-        } else {
-            dispatch(clearActors());
-        } */
         term ? dispatch(loadActors(term)) : dispatch(clearActors());
     }, [dispatch, term]);
 
