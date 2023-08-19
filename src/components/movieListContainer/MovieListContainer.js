@@ -1,15 +1,17 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMovies, loadMovies, addPage } from "../../features/movies/moviesSlise";
+import { selectMovies, selectSearchParams, loadMovies, addPage } from "../../features/movies/moviesSlise";
 import { Movie } from "../movie/Movie";
 
 export const MovieListContainer = () => {
-    const {movies, page} = useSelector(selectMovies);
+    const {movies} = useSelector(selectMovies);
+    console.log(movies);
+    const searchParams = useSelector(selectSearchParams);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(loadMovies({page: page, title: 'fight'}));
-    }, [dispatch, page]);
+        dispatch(loadMovies(searchParams));
+    }, [dispatch, searchParams]);
 
     return (
         <div className="movies-container">

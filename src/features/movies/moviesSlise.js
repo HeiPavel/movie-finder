@@ -4,7 +4,7 @@ import { fetchMovies } from "../../util/moviesRequest";
 export const loadMovies = createAsyncThunk('movies/loadMovies', 
     async (paramObj) => {
         const response = await fetchMovies(paramObj);
-        return response.data.results.filter(movie => movie.poster_path).map(movie => {
+        return response.data.filter(movie => movie.poster_path).map(movie => {
             return {
                 title: movie.original_title,
                 overview: movie.overview,
@@ -13,7 +13,8 @@ export const loadMovies = createAsyncThunk('movies/loadMovies',
                 vote_average: movie.vote_average,
                 vote_count: movie.vote_count,
                 genre: movie.genre_ids,
-                id: movie.id
+                id: movie.id,
+                matchCounter: 0
             }
         });
     }
@@ -22,35 +23,55 @@ export const loadMovies = createAsyncThunk('movies/loadMovies',
 export const moviesSlice = createSlice({
     name: 'movies',
     initialState: {
-        movies: [],
-        isLoading: false,
-        isError: false,
-        page: 1
+        loading: {
+            movies: [],
+            isLoading: false,
+            isError: false
+        },
+        searchParams: {
+            query: 'war',
+            with_genres: [27,878,18],
+            with_people: [500],
+            primary_release_year: 2005,
+            page: 1
+        },
+        movieIds: {}
     },
     reducers: {
         addPage: (state) => {
-            state.page += 1;
+            state.searchParams.page += 1;
         }
     },
     extraReducers: (builder) => {
         builder
         .addCase(loadMovies.pending, (state) => {
-            state['isLoading'] = true;
-            state['isError'] = false;
+            state.loading['isLoading'] = true;
+            state.loading['isError'] = false;
         })
         .addCase(loadMovies.fulfilled, (state, action) => {
-            state.movies.push(...action.payload);
-            state['isLoading'] = false;
-            state['isError'] = false;
+            const {query, with_genres, primary_release_year} = state.searchParams;
+            action.payload.forEach(movie => {
+                if (!Object.hasOwn(state.movieIds, movie.id)) {
+                    state.movieIds[movie.id] = 1;
+                    state.loading.movies.push(movie);
+                    if (query && movie.title.toLowerCase().includes(query)) movie.matchCounter++;
+                    if (with_genres.length && with_genres.some(genre => movie.genre.includes(genre))) movie.matchCounter++;
+                    if (primary_release_year && movie.release_date.includes(primary_release_year)) movie.matchCounter++;
+                }
+            });
+            state.loading.movies.sort((a, b) => b.matchCounter - a.matchCounter);
+            state.loading['isLoading'] = false;
+            state.loading['isError'] = false;
         })
         .addCase(loadMovies.rejected, (state) => {
-            state['isLoading'] = false;
-            state['isError'] = true;
+            state.loading['isLoading'] = false;
+            state.loading['isError'] = true;
         })
     }
 });
 
-export const selectMovies = (state) => state.movies;
+export const selectMovies = (state) => state.movies.loading;
+export const selectSearchParams = (state) => state.movies.searchParams;
 export const {addPage} = moviesSlice.actions;
 
 export default moviesSlice.reducer;

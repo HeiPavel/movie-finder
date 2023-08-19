@@ -1,20 +1,44 @@
 import fetch from "node-fetch";
 
-const handler = async (event) => {
-    const apiKey = process.env.API_KEY;
-    const {page, title} = event.queryStringParameters;
-    const baseUrl = "https://api.themoviedb.org/3/";
-    const discover = "discover/movie?api_key=";
-    const search = "search/movie?api_key=";
-    const queryDiscover = `&page=${page}&with_genres=Science%20Fiction`;
-    const querySearch = `&query=${title}&page=${page}`;
-    const url = title ? baseUrl + search + apiKey + querySearch :  baseUrl + discover + apiKey + queryDiscover;
+const fetchByParams = async (baseUrl, queryObj, apiKey) => {
+    let params = new URLSearchParams();
+    for (const param in queryObj) {
+        if (queryObj[param] && param !== 'query') params.set(param, queryObj[param]);
+    }
+    const url = `${baseUrl}discover/movie?api_key=${apiKey}&${params.toString()}`;
     try {
         const response = await fetch(url);
         const jsonResponse = await response.json();
+        return jsonResponse;
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+const fetchByTitle = async (baseUrl, queryObj, apiKey) => {
+    const {page, query} = queryObj;
+    if (!query) return {results: []};
+    const querySearch = `&query=${query}}&page=${page}`;
+    const url = `${baseUrl}search/movie?api_key=${apiKey}&${querySearch}`;
+    try {
+        const response = await fetch(url);
+        const jsonResponse = await response.json();
+        return jsonResponse;
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+const handler = async (event) => {
+    const apiKey = process.env.API_KEY;
+    const baseUrl = "https://api.themoviedb.org/3/";
+    try {
+        const response = await Promise.all([fetchByTitle(baseUrl, event.queryStringParameters, apiKey), fetchByParams(baseUrl, event.queryStringParameters, apiKey)]);
+        const data = [];
+        response.forEach(collection => data.push(...collection.results));
         return {
             statusCode: 200,
-            body: JSON.stringify({data: jsonResponse})
+            body: JSON.stringify({data: data})
         }
     } catch(error) {
         const {status, statusText, headers, data} = error.response;
