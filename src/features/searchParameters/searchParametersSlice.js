@@ -12,23 +12,15 @@ export const searchParametersSlice = createSlice({
     },
     reducers: {
         addPeople: (state, action) => {
-            state.searchParameters.with_people.push(action.payload);
+            if (state.searchParameters.with_people.every(id => id !== action.payload)) state.searchParameters.with_people.push(action.payload);
         },
         removePeople: (state, action) => {
             state.searchParameters.with_people = state.searchParameters.with_people.filter(id => id !== action.payload);
-        },
-        resetSearchParams: (state) => {
-            state.searchParameters = {
-                query: '',
-                with_genres: [],
-                with_people: [],
-                primary_release_year: ''
-            }
         }
     }
 });
 
 export const selectSearchParameters = (state) => state.searchParameters.searchParameters;
 
-export const {addPeople, removePeople, resetSearchParams} = searchParametersSlice.actions;
+export const {addPeople, removePeople} = searchParametersSlice.actions;
 export default searchParametersSlice.reducer;

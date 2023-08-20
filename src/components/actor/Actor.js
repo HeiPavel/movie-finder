@@ -1,7 +1,7 @@
 import React from "react";
 import noImage from '../../media/img/no-image.jpg';
 import { useDispatch } from "react-redux";
-import { addActor, removeActor } from "../../features/person/personSlice";
+import { addActor, removeActor, resetActors } from "../../features/searchActors/searchActorsSlice";
 import { addPeople, removePeople } from "../../features/searchParameters/searchParametersSlice";
 
 export const Actor = ({name, photo, isRemoved, actor}) => {
@@ -10,6 +10,7 @@ export const Actor = ({name, photo, isRemoved, actor}) => {
     const handleAddActor = () => {
         dispatch(addActor(actor));
         dispatch(addPeople(actor.id));
+        dispatch(resetActors());
     }
     const handleRemoveActor = () => {
         dispatch(removeActor(actor.id));

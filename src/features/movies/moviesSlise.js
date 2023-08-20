@@ -48,8 +48,6 @@ export const moviesSlice = createSlice({
         },
         resetMovies: (state) => {
             state.loading.movies = [];
-        },
-        resetSearchParams: (state) => {
             state.searchParams = {
                 query: '',
                 with_genres: [],
@@ -90,6 +88,12 @@ export const moviesSlice = createSlice({
 
 export const selectMovies = (state) => state.movies.loading;
 export const selectSearchParams = (state) => state.movies.searchParams;
-export const {addPage, updateSearchParams, resetMovies, resetSearchParams} = moviesSlice.actions;
+export const {addPage, updateSearchParams, resetMovies} = moviesSlice.actions;
+export const resetAndUpdate = (payload) => {
+    return dispatch => {
+        dispatch(resetMovies());
+        dispatch(updateSearchParams(payload));
+    }
+}
 
 export default moviesSlice.reducer;

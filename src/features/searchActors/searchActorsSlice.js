@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchActors } from "../../util/personRequest";
 
-export const loadActors = createAsyncThunk('person/loadActors',
+export const loadActors = createAsyncThunk('searchActors/loadActors',
     async (term) => {
         const response = await fetchActors(term);
         return response.data.results.map(person => {
@@ -14,8 +14,8 @@ export const loadActors = createAsyncThunk('person/loadActors',
     }
 );
 
-export const personSlice = createSlice({
-    name: 'person',
+export const searchActors = createSlice({
+    name: 'searchActors',
     initialState: {
         term: '',
         selectedActors: [],
@@ -31,6 +31,10 @@ export const personSlice = createSlice({
         removeActor: (state, action) => {
             state.selectedActors = state.selectedActors.filter(actor => actor.id !== action.payload);
         },
+        resetActors: (state) => {
+            state.term = '';
+            state.actors = [];
+        }, 
         clearActors: (state) => {
             state.actors = [];
         }
@@ -43,10 +47,10 @@ export const personSlice = createSlice({
     }
 });
 
-export const selectSearchTerm = (state) => state.person.term;
-export const selectActors = (state) => state.person.actors;
-export const selectSelectedActors = (state) => state.person.selectedActors;
+export const selectSearchTerm = (state) => state.searchActors.term;
+export const selectActors = (state) => state.searchActors.actors;
+export const selectSelectedActors = (state) => state.searchActors.selectedActors;
 
-export const {changeTerm, addActor, removeActor, clearActors} = personSlice.actions;
+export const {changeTerm, addActor, removeActor, resetActors, clearActors} = searchActors.actions;
 
-export default personSlice.reducer;
+export default searchActors.reducer;

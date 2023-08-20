@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectSearchTerm, changeTerm, loadActors, clearActors } from "../../features/person/personSlice";
+import { selectSearchTerm, changeTerm, loadActors, clearActors } from "../../features/searchActors/searchActorsSlice";
 import { ActorsContainer } from "../actorsContainer/ActorsContainer";
 
-export const Person = () => {
+export const SearchActors = () => {
     const term = useSelector(selectSearchTerm);
     const dispatch = useDispatch();
 

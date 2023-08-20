@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectActors, selectSelectedActors } from "../../features/person/personSlice";
+import { selectActors, selectSelectedActors } from "../../features/searchActors/searchActorsSlice";
 import { Actor } from "../actor/Actor";
 
 export const ActorsContainer = React.memo(() => {
