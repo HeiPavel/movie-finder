@@ -1,21 +1,13 @@
 import React from "react";
 import noImage from '../../media/img/no-image.jpg';
 import { useDispatch } from "react-redux";
-import { addActor, removeActor, resetActors } from "../../features/searchActors/searchActorsSlice";
-import { addPeople, removePeople } from "../../features/searchParameters/searchParametersSlice";
+import { addAndResetActors, removeActorAndId } from "../../features/searchActors/searchActorsSlice";
 
 export const Actor = ({name, photo, isRemoved, actor}) => {
     const dispatch = useDispatch();
 
-    const handleAddActor = () => {
-        dispatch(addActor(actor));
-        dispatch(addPeople(actor.id));
-        dispatch(resetActors());
-    }
-    const handleRemoveActor = () => {
-        dispatch(removeActor(actor.id));
-        dispatch(removePeople(actor.id));
-    }
+    const handleAddActor = () => dispatch(addAndResetActors(actor));
+    const handleRemoveActor = () => dispatch(removeActorAndId(actor.id));
 
     return (
         <div className="actor-container">

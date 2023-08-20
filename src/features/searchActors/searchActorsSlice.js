@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchActors } from "../../util/personRequest";
+import { addPeople, removePeople } from "../searchParameters/searchParametersSlice";
 
 export const loadActors = createAsyncThunk('searchActors/loadActors',
     async (term) => {
@@ -52,5 +53,19 @@ export const selectActors = (state) => state.searchActors.actors;
 export const selectSelectedActors = (state) => state.searchActors.selectedActors;
 
 export const {changeTerm, addActor, removeActor, resetActors, clearActors} = searchActors.actions;
+export const addAndResetActors = (payload) => {
+    return dispatch => {
+        dispatch(addActor(payload));
+        dispatch(addPeople(payload.id));
+        dispatch(resetActors());
+    }
+}
+
+export const removeActorAndId = (payload) => {
+    return dispatch => {
+        dispatch(removeActor(payload));
+        dispatch(removePeople(payload));
+    }
+}
 
 export default searchActors.reducer;

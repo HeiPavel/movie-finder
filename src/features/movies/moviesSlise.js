@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import { fetchMovies } from "../../util/moviesRequest";
+import { resetActors } from "../searchActors/searchActorsSlice";
 
 export const loadMovies = createAsyncThunk('movies/loadMovies', 
     async (paramObj) => {
@@ -93,6 +94,7 @@ export const resetAndUpdate = (payload) => {
     return dispatch => {
         dispatch(resetMovies());
         dispatch(updateSearchParams(payload));
+        dispatch(resetActors());
     }
 }
 

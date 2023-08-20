@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetAndUpdate } from "../../features/movies/moviesSlise";
 import { selectSearchParameters } from "../../features/searchParameters/searchParametersSlice";
 import { SearchActors } from "../searchActors/SearchActors";
-import { resetActors } from "../../features/searchActors/searchActorsSlice";
 
 export const SearchContainer = () => {
     const searchParameters = useSelector(selectSearchParameters);
@@ -12,7 +11,6 @@ export const SearchContainer = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(resetAndUpdate(searchParameters));
-        dispatch(resetActors());
     }
 
     return (
