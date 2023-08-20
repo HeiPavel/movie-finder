@@ -5,7 +5,6 @@ import { Movie } from "../movie/Movie";
 
 export const MovieListContainer = () => {
     const {movies} = useSelector(selectMovies);
-    console.log(movies);
     const searchParams = useSelector(selectSearchParams);
     const dispatch = useDispatch();
 

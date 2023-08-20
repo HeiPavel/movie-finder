@@ -29,10 +29,10 @@ export const moviesSlice = createSlice({
             isError: false
         },
         searchParams: {
-            query: 'war',
-            with_genres: [27,878,18],
-            with_people: [500],
-            primary_release_year: 2005,
+            query: '',
+            with_genres: [],
+            with_people: [],
+            primary_release_year: '',
             page: 1
         },
         movieIds: {}
@@ -40,6 +40,24 @@ export const moviesSlice = createSlice({
     reducers: {
         addPage: (state) => {
             state.searchParams.page += 1;
+        },
+        updateSearchParams: (state, action) => {
+            for (const param in action.payload) {
+                Array.isArray(action.payload[param]) ? state.searchParams[param].push(...action.payload[param]) : state.searchParams[param] = action.payload[param];
+            }
+        },
+        resetMovies: (state) => {
+            state.loading.movies = [];
+        },
+        resetSearchParams: (state) => {
+            state.searchParams = {
+                query: '',
+                with_genres: [],
+                with_people: [],
+                primary_release_year: '',
+                page: 1
+            }
+            state.movieIds = {};
         }
     },
     extraReducers: (builder) => {
@@ -72,6 +90,6 @@ export const moviesSlice = createSlice({
 
 export const selectMovies = (state) => state.movies.loading;
 export const selectSearchParams = (state) => state.movies.searchParams;
-export const {addPage} = moviesSlice.actions;
+export const {addPage, updateSearchParams, resetMovies, resetSearchParams} = moviesSlice.actions;
 
 export default moviesSlice.reducer;
