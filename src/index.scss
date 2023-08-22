@@ -2,7 +2,7 @@ html,
 body {
   min-height: 100vh;
   position: relative;
-  font-size: 18px;
+  font-size: 14px;
   margin: 0;
 }
 
@@ -12,6 +12,7 @@ p {
 }
 
 .movies-container {
+    box-sizing: content-box;
     margin: 0 auto;
     padding: 30px;
     display: flex;
@@ -46,6 +47,9 @@ p {
         gap: 25px;
         justify-content: flex-end;
         align-items: flex-end;
+        .multiselect {
+            width: 200px;
+        }
         .person {
             width: 200px;
             display: flex;

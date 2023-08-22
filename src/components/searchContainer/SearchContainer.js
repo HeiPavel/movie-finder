@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetAndUpdate } from "../../features/movies/moviesSlise";
 import { selectSearchParameters } from "../../features/searchParameters/searchParametersSlice";
 import { SearchActors } from "../searchActors/SearchActors";
+import { GenreContainer } from "../genreContainer/GenreContainer";
 
 export const SearchContainer = () => {
     const searchParameters = useSelector(selectSearchParameters);
@@ -18,6 +19,7 @@ export const SearchContainer = () => {
             <h2>Find and sort movies by own preference</h2>
             <form onSubmit={(event) => handleSubmit(event)} className="form-container">
                 <SearchActors/>
+                <GenreContainer/>
                 <input type="submit" value="Search" />
             </form>
         </div>

@@ -16,11 +16,14 @@ export const searchParametersSlice = createSlice({
         },
         removePeople: (state, action) => {
             state.searchParameters.with_people = state.searchParameters.with_people.filter(id => id !== action.payload);
+        },
+        changeSelectedGenres: (state, action) => {
+            state.searchParameters.with_genres = action.payload;
         }
     }
 });
 
 export const selectSearchParameters = (state) => state.searchParameters.searchParameters;
 
-export const {addPeople, removePeople} = searchParametersSlice.actions;
+export const {addPeople, removePeople, changeSelectedGenres} = searchParametersSlice.actions;
 export default searchParametersSlice.reducer;
