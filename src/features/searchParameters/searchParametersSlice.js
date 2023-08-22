@@ -12,10 +12,7 @@ export const searchParametersSlice = createSlice({
     },
     reducers: {
         addPeople: (state, action) => {
-            if (state.searchParameters.with_people.every(id => id !== action.payload)) state.searchParameters.with_people.push(action.payload);
-        },
-        removePeople: (state, action) => {
-            state.searchParameters.with_people = state.searchParameters.with_people.filter(id => id !== action.payload);
+            state.searchParameters.with_people = action.payload.map(actor => actor.id);
         },
         changeSelectedGenres: (state, action) => {
             state.searchParameters.with_genres = action.payload;
@@ -25,5 +22,5 @@ export const searchParametersSlice = createSlice({
 
 export const selectSearchParameters = (state) => state.searchParameters.searchParameters;
 
-export const {addPeople, removePeople, changeSelectedGenres} = searchParametersSlice.actions;
+export const {addPeople, changeSelectedGenres} = searchParametersSlice.actions;
 export default searchParametersSlice.reducer;

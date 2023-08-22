@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchActors } from "../../util/personRequest";
-import { addPeople, removePeople } from "../searchParameters/searchParametersSlice";
+import { addPeople } from "../searchParameters/searchParametersSlice";
 
 export const loadActors = createAsyncThunk('searchActors/loadActors',
     async (term) => {
@@ -27,10 +27,7 @@ export const searchActors = createSlice({
             state.term = action.payload;
         },
         addActor: (state, action) => {
-            if (state.selectedActors.every(actor => actor.id !== action.payload.id)) state.selectedActors.push(action.payload);
-        },
-        removeActor: (state, action) => {
-            state.selectedActors = state.selectedActors.filter(actor => actor.id !== action.payload);
+            state.selectedActors = action.payload;
         },
         resetActors: (state) => {
             state.term = '';
@@ -52,19 +49,12 @@ export const selectSearchTerm = (state) => state.searchActors.term;
 export const selectActors = (state) => state.searchActors.actors;
 export const selectSelectedActors = (state) => state.searchActors.selectedActors;
 
-export const {changeTerm, addActor, removeActor, resetActors, clearActors} = searchActors.actions;
+export const {changeTerm, addActor, resetActors, clearActors} = searchActors.actions;
 export const addAndResetActors = (payload) => {
     return dispatch => {
-        dispatch(addActor(payload));
-        dispatch(addPeople(payload.id));
+        dispatch(addActor(payload ? payload : []));
+        dispatch(addPeople(payload ? payload : []));
         dispatch(resetActors());
-    }
-}
-
-export const removeActorAndId = (payload) => {
-    return dispatch => {
-        dispatch(removeActor(payload));
-        dispatch(removePeople(payload));
     }
 }
 

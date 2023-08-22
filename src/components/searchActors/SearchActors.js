@@ -1,11 +1,22 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectSearchTerm, changeTerm, loadActors, clearActors } from "../../features/searchActors/searchActorsSlice";
-import { ActorsContainer } from "../actorsContainer/ActorsContainer";
+import { MultiSelect } from "primereact/multiselect";
+import { selectSearchTerm, changeTerm, loadActors, clearActors, selectActors, selectSelectedActors, addAndResetActors } from "../../features/searchActors/searchActorsSlice";
+import { elementsForRender } from "../../util/helper/elementsForRender";
+
 
 export const SearchActors = () => {
+    const actors = useSelector(selectActors);
+    const selectedActors = useSelector(selectSelectedActors);
     const term = useSelector(selectSearchTerm);
     const dispatch = useDispatch();
+    const multiselectRef = useRef(null);
+
+    const handleChange = (event) => {
+        dispatch(addAndResetActors(event.value));
+        if (multiselectRef.current) multiselectRef.current.hide();
+    }
+
 
     useEffect(() => {
         term ? dispatch(loadActors(term)) : dispatch(clearActors());
@@ -13,15 +24,22 @@ export const SearchActors = () => {
 
     return (
         <div className="person">
-            <label htmlFor="actor">Find actor:</label>
-            <input 
-                type="text" 
-                id="actor" 
-                onChange={(event) => dispatch(changeTerm(event.target.value))} 
-                value={term} 
-                placeholder="Second name or full name" 
+            <MultiSelect
+                ref={multiselectRef} 
+                value={selectedActors}
+                onChange={handleChange}
+                filter
+                onFilter={(event) => dispatch(changeTerm(event.filter))}
+                options={elementsForRender(selectedActors, actors)}
+                optionLabel="name" 
+                display="comma"
+                placeholder="Select actors"
+                className="multiselect"
+                showSelectAll={false}
+                maxSelectedLabels={3}
+                showClear
+                resetFilterOnHide={true}
             />
-            <ActorsContainer />
         </div>
     );
 }
