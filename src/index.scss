@@ -2,7 +2,7 @@ html,
 body {
   min-height: 100vh;
   position: relative;
-  font-size: 14px;
+  font-size: 18px;
   margin: 0;
 }
 
@@ -49,39 +49,72 @@ p {
         align-items: flex-end;
         .multiselect {
             width: 200px;
+            font-size: 0.8rem;
+            .p-multiselect-label {
+                padding: 0.4rem;
+            }
+            .p-multiselect-trigger {
+                width: 1.5rem;
+            }
+            .p-icon {
+                width: 0.8rem;
+                height: 0.8rem;
+            }
         }
-        .person {
-            width: 200px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            .actors-container {
-                position: relative;
-                .inner-container {
-                    width: 100%;
-                    position: absolute;
-                    max-height: 109px;
-                    overflow: scroll;
-                    -ms-overflow-style: none;  /* IE and Edge */
-                    scrollbar-width: none; /* Firefox */
-                    .actor-container {
-                        margin-bottom: 2px;
-                        width: 100%;
-                        height: 35px;
+    }
+}
+
+body {
+    .multiselect-overlay, .p-component {
+        font-size: 0.85rem;
+    }
+    .multiselect-overlay {
+        .p-multiselect-header {
+            padding: 0.4rem;
+            .p-multiselect-filter-container {
+                margin: 0;
+                .p-inputtext {
+                    padding: 0.2rem;
+                }
+            }
+            .p-multiselect-close {
+                width: 2rem;
+                height: 1.2rem;
+                .p-icon {
+                    width: 0.8rem;
+                    height: 0.8rem;
+                }
+            }
+        }
+        .p-multiselect-items-wrapper {
+            .p-multiselect-item {
+                padding: 0.5rem 0.75rem;
+                .actor-container {
+                    display: flex;
+                    gap: 0.5rem;
+                    align-items: center;
+                    .img-container {
+                        border-radius: 50%;
+                        overflow: hidden;
+                        height: 1.6rem;
+                        width: 1.6rem;
                         display: flex;
-                        align-items: center;
-                        img {
-                            height: 100%;
-                            width: 35px;
+                        justify-content: center;
+                        .no-photo-container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            svg {
+                                height: 1.6rem;
+                                width: 1.6rem;
+                                color: gray;
+                            }
                         }
-                        p {
-                            text-align: center;
-                            flex-grow: 1;
+                        img {
+                            height: 2.2rem;
+                            width: 1.6rem;
                         }
                     }
-                }
-                .inner-container::-webkit-scrollbar { /* Chrome Safari */
-                    display: none;
                 }
             }
         }

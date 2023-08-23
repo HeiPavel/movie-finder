@@ -14,7 +14,7 @@ export const GenreContainer = () => {
     }, [dispatch]);
 
     return (
-        <div className="card flex justify-content-center">
+        <div className="select-container">
             <MultiSelect 
                 value={selectedGenres}
                 onChange={(event) => dispatch(updateGenres(event.value))}
@@ -23,6 +23,7 @@ export const GenreContainer = () => {
                 display="comma"
                 placeholder="Select genres"
                 className="multiselect"
+                panelClassName="multiselect-overlay"
                 showSelectAll={false}
                 maxSelectedLabels={3}
                 showClear
