@@ -47,11 +47,16 @@ p {
         gap: 25px;
         justify-content: flex-end;
         align-items: flex-end;
-        .multiselect {
+        .multiselect, .dropdown {
             width: 200px;
             font-size: 0.8rem;
-            .p-multiselect-label {
+            .p-multiselect-clear-icon {
+                right: 2rem;
+                margin-top: -0.4rem;
+            }
+            .p-multiselect-label, .p-dropdown-label {
                 padding: 0.4rem;
+                font-size: 0.8rem;
             }
             .p-multiselect-trigger {
                 width: 1.5rem;
@@ -60,6 +65,9 @@ p {
                 width: 0.8rem;
                 height: 0.8rem;
             }
+        }
+        .dropdown {
+            width: 150px;
         }
     }
 }

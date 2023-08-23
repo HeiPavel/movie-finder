@@ -16,11 +16,15 @@ export const searchParametersSlice = createSlice({
         },
         changeSelectedGenres: (state, action) => {
             state.searchParameters.with_genres = action.payload;
+        },
+        chooseYear: (state, action) => {
+            state.searchParameters.primary_release_year = action.payload;
         }
     }
 });
 
 export const selectSearchParameters = (state) => state.searchParameters.searchParameters;
+export const selectYear = (state) => state.searchParameters.searchParameters.primary_release_year;
 
-export const {addPeople, changeSelectedGenres} = searchParametersSlice.actions;
+export const {addPeople, changeSelectedGenres, chooseYear} = searchParametersSlice.actions;
 export default searchParametersSlice.reducer;

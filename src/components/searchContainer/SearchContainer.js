@@ -4,6 +4,7 @@ import { resetAndUpdate } from "../../features/movies/moviesSlise";
 import { selectSearchParameters } from "../../features/searchParameters/searchParametersSlice";
 import { SearchActors } from "../searchActors/SearchActors";
 import { GenreContainer } from "../genreContainer/GenreContainer";
+import { YearContainer } from "../yearContainer/yearContainer";
 
 export const SearchContainer = () => {
     const searchParameters = useSelector(selectSearchParameters);
@@ -20,6 +21,7 @@ export const SearchContainer = () => {
             <form onSubmit={(event) => handleSubmit(event)} className="form-container">
                 <SearchActors/>
                 <GenreContainer/>
+                <YearContainer/>
                 <input type="submit" value="Search" />
             </form>
         </div>
