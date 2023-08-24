@@ -11,11 +11,12 @@ export const YearContainer = () => {
     return (
         <div className="dropdown-container">
             <Dropdown 
-                value={year}
+                value={year ? year : null}
                 options={generateYearList()}
                 onChange={(event) => dispatch(chooseYear(event.value))}
                 placeholder="Select year"
                 className="dropdown"
+                showClear
             />
         </div>
     );

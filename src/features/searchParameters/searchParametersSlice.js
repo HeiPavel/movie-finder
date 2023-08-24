@@ -5,26 +5,40 @@ export const searchParametersSlice = createSlice({
     initialState: {
         searchParameters: {
             query: '',
-            with_genres: [],
-            with_people: [],
+            with_genres: {
+                array: [],
+                separator: false
+            },
+            with_people: {
+                array: [],
+                separator: false
+            },
             primary_release_year: ''
         }
     },
     reducers: {
         addPeople: (state, action) => {
-            state.searchParameters.with_people = action.payload.map(actor => actor.id);
+            state.searchParameters.with_people.array = action.payload.map(actor => actor.id);
         },
         changeSelectedGenres: (state, action) => {
-            state.searchParameters.with_genres = action.payload;
+            state.searchParameters.with_genres.array = action.payload;
         },
         chooseYear: (state, action) => {
             state.searchParameters.primary_release_year = action.payload;
+        },
+        toggleGenreSeparator: (state, action) => {
+            state.searchParameters.with_genres.separator = action.payload;
+        },
+        togglePeopleSeparator: (state, action) => {
+            state.searchParameters.with_people.separator = action.payload;
         }
     }
 });
 
 export const selectSearchParameters = (state) => state.searchParameters.searchParameters;
 export const selectYear = (state) => state.searchParameters.searchParameters.primary_release_year;
+export const selectGenreSeparator = (state) => state.searchParameters.searchParameters.with_genres.separator;
+export const selectPeopleSeparator = (state) => state.searchParameters.searchParameters.with_people.separator;
 
-export const {addPeople, changeSelectedGenres, chooseYear} = searchParametersSlice.actions;
+export const {addPeople, changeSelectedGenres, chooseYear, toggleGenreSeparator, togglePeopleSeparator} = searchParametersSlice.actions;
 export default searchParametersSlice.reducer;

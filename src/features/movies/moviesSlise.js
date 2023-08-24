@@ -31,8 +31,14 @@ export const moviesSlice = createSlice({
         },
         searchParams: {
             query: '',
-            with_genres: [],
-            with_people: [],
+            with_genres: {
+                array: [],
+                separator: false
+            },
+            with_people: {
+                array: [],
+                separator: false
+            },
             primary_release_year: '',
             page: 1
         },
@@ -44,15 +50,21 @@ export const moviesSlice = createSlice({
         },
         updateSearchParams: (state, action) => {
             for (const param in action.payload) {
-                Array.isArray(action.payload[param]) ? state.searchParams[param].push(...action.payload[param]) : state.searchParams[param] = action.payload[param];
+                state.searchParams[param] = action.payload[param];
             }
         },
         resetMovies: (state) => {
             state.loading.movies = [];
             state.searchParams = {
                 query: '',
-                with_genres: [],
-                with_people: [],
+                with_genres: {
+                    array: [],
+                    separator: false
+                },
+                with_people: {
+                    array: [],
+                    separator: false
+                },
                 primary_release_year: '',
                 page: 1
             }

@@ -44,13 +44,33 @@ p {
     .form-container {
         padding: 30px;
         display: flex;
-        gap: 25px;
+        gap: 15px;
         justify-content: flex-end;
-        align-items: flex-end;
+        align-items: center;
+        .multiselect-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .multi-checkbox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            .p-checkbox, .p-checkbox .p-checkbox-box {
+                width: 20px;
+                height: 20px;
+            }
+            .checkbox-value {
+                font-size: 0.9rem;
+            }
+        }
         .multiselect, .dropdown {
             width: 200px;
+            height: 40px;
             font-size: 0.8rem;
-            .p-multiselect-clear-icon {
+            .p-multiselect-clear-icon, .p-dropdown-clear-icon {
                 right: 2rem;
                 margin-top: -0.4rem;
             }
@@ -58,7 +78,7 @@ p {
                 padding: 0.4rem;
                 font-size: 0.8rem;
             }
-            .p-multiselect-trigger {
+            .p-multiselect-trigger, .p-dropdown-trigger {
                 width: 1.5rem;
             }
             .p-icon {
@@ -72,7 +92,30 @@ p {
     }
 }
 
+/*Tooltip icon*/
+.hint-container {
+    .hint-icon {
+        outline: none;
+    }
+    svg {
+        color: gray;
+    }
+}
+
 body {
+    /*Tooltip style*/
+    .p-tooltip.p-tooltip-right {
+        padding: 0;
+        transform: translate(-40px, 25px);
+        .p-tooltip-text {
+            padding: 0.25rem 0.3rem 0.3rem 0.3rem;
+            font-size: 0.7rem;
+            background: gray;
+        }
+        .p-tooltip-arrow {
+            display: none;
+        }
+    }
     .multiselect-overlay, .p-component {
         font-size: 0.85rem;
     }

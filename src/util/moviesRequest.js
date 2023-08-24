@@ -1,7 +1,7 @@
 export const fetchMovies = async (obj) => {
     let params = new URLSearchParams();
     for (const param in obj) {
-        const stringParam =  Array.isArray(obj[param]) ? obj[param].join('|') : obj[param];
+        const stringParam =  (typeof obj[param] === 'object') ? obj[param].array.join(`${obj[param].separator ? ',' : '|'}`) : obj[param];
         if (stringParam) params.set(param, stringParam);
     }
     try {

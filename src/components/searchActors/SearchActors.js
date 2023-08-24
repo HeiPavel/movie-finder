@@ -3,12 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { MultiSelect } from "primereact/multiselect";
 import { selectSearchTerm, changeTerm, loadActors, clearActors, selectActors, selectSelectedActors, addAndResetActors } from "../../features/searchActors/searchActorsSlice";
 import { elementsForRender } from "../../util/helper/elementsForRender";
+import MultiSearchSeparator from "../multiSearchSeparator/MultiSearchSeparator";
+import { selectPeopleSeparator, togglePeopleSeparator } from "../../features/searchParameters/searchParametersSlice";
+import { TooltipHint } from "../tooltip/TooltipHint";
 
 
 export const SearchActors = () => {
     const actors = useSelector(selectActors);
     const selectedActors = useSelector(selectSelectedActors);
     const term = useSelector(selectSearchTerm);
+    const separator = useSelector(selectPeopleSeparator);
     const dispatch = useDispatch();
     const multiselectRef = useRef(null);
 
@@ -42,26 +46,37 @@ export const SearchActors = () => {
     }, [dispatch, term]);
 
     return (
-        <div className="select-container">
-            <MultiSelect
-                ref={multiselectRef} 
-                value={selectedActors}
-                onChange={handleChange}
-                filter
-                onFilter={(event) => dispatch(changeTerm(event.filter))}
-                options={elementsForRender(selectedActors, actors)}
-                optionLabel="name" 
-                display="comma"
-                placeholder="Select actors"
-                filterPlaceholder="Search actors"
-                className="multiselect"
-                panelClassName="multiselect-overlay"
-                showSelectAll={false}
-                maxSelectedLabels={3}
-                showClear
-                resetFilterOnHide={true}
-                itemTemplate={actorPhotoTemplate}
-            />
+        <div className="multiselect-box">
+            <div className="select-container">
+                <MultiSelect
+                    ref={multiselectRef} 
+                    value={selectedActors}
+                    onChange={handleChange}
+                    filter
+                    onFilter={(event) => dispatch(changeTerm(event.filter))}
+                    options={elementsForRender(selectedActors, actors)}
+                    optionLabel="name" 
+                    display="comma"
+                    placeholder="Select actors"
+                    filterPlaceholder="Search actors"
+                    className="multiselect"
+                    panelClassName="multiselect-overlay"
+                    showSelectAll={false}
+                    maxSelectedLabels={3}
+                    showClear
+                    resetFilterOnHide={true}
+                    itemTemplate={actorPhotoTemplate}
+                />
+            </div>
+            <div className="multi-checkbox">
+                <MultiSearchSeparator 
+                    isAnd={separator}
+                    action={togglePeopleSeparator}
+                />
+                <TooltipHint 
+                    content={"'+(and)' - search for movies that include all selected actors, '-(or)' - search for movies that include at least one actor"}
+                />
+            </div>
         </div>
     );
 }
