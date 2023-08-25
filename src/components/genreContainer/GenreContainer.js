@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {MultiSelect} from "primereact/multiselect";                                                       
 import { updateGenres, selectGenres, loadGenres, selectSelectedGenres } from "../../features/genres/genresSlice";
@@ -7,11 +7,17 @@ import MultiSearchSeparator from "../multiSearchSeparator/MultiSearchSeparator";
 import { selectGenreSeparator, toggleGenreSeparator } from "../../features/searchParameters/searchParametersSlice";
 import { TooltipHint } from "../tooltip/TooltipHint";
 
-export const GenreContainer = () => {
+export const GenreContainer = React.memo(() => {
     const dispatch = useDispatch();
     const genres = useSelector(selectGenres);
     const selectedGenres = useSelector(selectSelectedGenres);
     const separator = useSelector(selectGenreSeparator);
+    const multiselectRef = useRef(null);
+
+    const handleChange = (event) => {
+        dispatch(updateGenres(event.value));
+        if (multiselectRef.current) multiselectRef.current.hide();
+    }
 
     useEffect(() => {
         dispatch(loadGenres());
@@ -20,9 +26,10 @@ export const GenreContainer = () => {
     return (
         <div className="multiselect-box">
             <div className="select-container">
-                <MultiSelect 
+                <MultiSelect
+                    ref={multiselectRef} 
                     value={selectedGenres}
-                    onChange={(event) => dispatch(updateGenres(event.value))}
+                    onChange={handleChange}
                     options={elementsForRender(selectedGenres, genres)}
                     optionLabel="name" 
                     display="comma"
@@ -45,4 +52,4 @@ export const GenreContainer = () => {
             </div>
         </div>
     );
-}
+})

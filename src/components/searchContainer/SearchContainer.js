@@ -5,6 +5,7 @@ import { selectSearchParameters } from "../../features/searchParameters/searchPa
 import { SearchActors } from "../searchActors/SearchActors";
 import { GenreContainer } from "../genreContainer/GenreContainer";
 import { YearContainer } from "../yearContainer/yearContainer";
+import { SearchMovieTitle } from "../searchMovieTitle/SearchMovieTitle";
 
 export const SearchContainer = () => {
     const searchParameters = useSelector(selectSearchParameters);
@@ -19,6 +20,7 @@ export const SearchContainer = () => {
         <div className="search-container">
             <h2>Find and sort movies by own preference</h2>
             <form onSubmit={(event) => handleSubmit(event)} className="form-container">
+                <SearchMovieTitle/>
                 <SearchActors/>
                 <GenreContainer/>
                 <YearContainer/>

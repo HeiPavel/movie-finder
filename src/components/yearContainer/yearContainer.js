@@ -4,7 +4,7 @@ import {Dropdown} from 'primereact/dropdown';
 import { generateYearList } from "../../util/helper/generateYearsList";
 import { chooseYear, selectYear } from "../../features/searchParameters/searchParametersSlice";
 
-export const YearContainer = () => {
+export const YearContainer = React.memo(() => {
     const year = useSelector(selectYear);
     const dispatch = useDispatch();
 
@@ -20,4 +20,4 @@ export const YearContainer = () => {
             />
         </div>
     );
-}
+})

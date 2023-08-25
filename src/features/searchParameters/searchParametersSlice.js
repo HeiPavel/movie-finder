@@ -17,6 +17,9 @@ export const searchParametersSlice = createSlice({
         }
     },
     reducers: {
+        changeQuery: (state, action) => {
+            state.searchParameters.query = action.payload;
+        },
         addPeople: (state, action) => {
             state.searchParameters.with_people.array = action.payload.map(actor => actor.id);
         },
@@ -40,5 +43,5 @@ export const selectYear = (state) => state.searchParameters.searchParameters.pri
 export const selectGenreSeparator = (state) => state.searchParameters.searchParameters.with_genres.separator;
 export const selectPeopleSeparator = (state) => state.searchParameters.searchParameters.with_people.separator;
 
-export const {addPeople, changeSelectedGenres, chooseYear, toggleGenreSeparator, togglePeopleSeparator} = searchParametersSlice.actions;
+export const {addPeople, changeSelectedGenres, chooseYear, toggleGenreSeparator, togglePeopleSeparator, changeQuery} = searchParametersSlice.actions;
 export default searchParametersSlice.reducer;

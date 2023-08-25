@@ -8,7 +8,7 @@ import { selectPeopleSeparator, togglePeopleSeparator } from "../../features/sea
 import { TooltipHint } from "../tooltip/TooltipHint";
 
 
-export const SearchActors = () => {
+export const SearchActors = React.memo(() => {
     const actors = useSelector(selectActors);
     const selectedActors = useSelector(selectSelectedActors);
     const term = useSelector(selectSearchTerm);
@@ -66,6 +66,7 @@ export const SearchActors = () => {
                     showClear
                     resetFilterOnHide={true}
                     itemTemplate={actorPhotoTemplate}
+                    overlayVisible={term ? true : false}
                 />
             </div>
             <div className="multi-checkbox">
@@ -79,4 +80,4 @@ export const SearchActors = () => {
             </div>
         </div>
     );
-}
+})
