@@ -7,7 +7,7 @@ export const loadMovies = createAsyncThunk('movies/loadMovies',
         const response = await fetchMovies(paramObj);
         return response.data.filter(movie => movie.poster_path).map(movie => {
             return {
-                title: movie.original_title,
+                title: movie.title,
                 overview: movie.overview,
                 poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
                 release_date: movie.release_date,

@@ -66,7 +66,6 @@ export const SearchActors = React.memo(() => {
                     showClear
                     resetFilterOnHide={true}
                     itemTemplate={actorPhotoTemplate}
-                    overlayVisible={term ? true : false}
                 />
             </div>
             <div className="multi-checkbox">

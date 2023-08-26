@@ -16,10 +16,10 @@ export const MovieListContainer = () => {
         <div className="movies-container">
             {movies.map(movie => {
                 return <Movie 
-                            poster={movie.poster}
-                            key={movie.id}
-                        />;
-            })}
+                        movie={movie}
+                        key={movie.id}
+                    />;
+                })}
             <div className="button-container">
                 <button onClick={() => dispatch(addPage())}>Load more</button>
             </div>
