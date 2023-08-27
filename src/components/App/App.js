@@ -1,11 +1,11 @@
 import React from "react";
 import { MovieListContainer } from "../movieListContainer/MovieListContainer";
-import {SearchContainer} from '../searchContainer/SearchContainer';
+import { SidebarContainer } from "../sidebarContainer/SidebarContainer";
 
 function App() {
   return (
     <>
-      <SearchContainer/>
+      <SidebarContainer/>
       <MovieListContainer/>
     </>
   );

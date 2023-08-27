@@ -4,6 +4,7 @@ import searchActorsReducer from "../../features/searchActors/searchActorsSlice";
 import searchParametersReducer from '../../features/searchParameters/searchParametersSlice';
 import genresReducer from '../../features/genres/genresSlice';
 import searchMovieTitleReducer from "../../features/searchMovieTitle/searchMovieTitle";
+import sidebarReducer from '../../features/sidebar/sidebarSlice';
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         searchActors: searchActorsReducer,
         searchParameters: searchParametersReducer,
         genres: genresReducer,
-        movieTitles: searchMovieTitleReducer
+        movieTitles: searchMovieTitleReducer,
+        sidebar: sidebarReducer
     }
 });

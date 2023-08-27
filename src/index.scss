@@ -48,13 +48,16 @@ p {
             .title {
                 padding: 0.3rem 0.8rem;
                 font-size: 1.1rem;
+                max-height: 3rem;
+                overflow: hidden;
             }
             .statistic-box {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 padding: 0.1rem 1rem;
-                 font-size: 0.8rem;
+                font-size: 0.8rem;
+                height: 2.1rem;
                 .vote-box {
                     position: relative;
                     display: flex;
@@ -68,7 +71,8 @@ p {
                     }
                 }
                 .genres-box {
-                    width: 35%;
+                    width: 50%;
+                    word-spacing: 2rem;
                     text-align: right;
                     color: rgba(39, 36, 36, 0.5);
                 }
@@ -83,6 +87,15 @@ p {
     }
 }
 
+.sidebar-button-container {
+    padding: 1rem;
+    position: absolute;
+    .p-button.p-button-icon-only {
+        height: 2rem;
+        width: 2rem;
+    }
+}
+
 .search-container {
     height: 150px;
     h2 {
@@ -91,9 +104,8 @@ p {
     .form-container {
         padding: 30px;
         display: flex;
-        gap: 15px;
-        justify-content: flex-end;
-        align-items: center;
+        flex-direction: column;
+        gap: 40px;
         .multiselect-box {
             display: flex;
             align-items: center;
@@ -138,6 +150,11 @@ p {
         }
         #title-search-dropdown {
             width: 250px;
+        }
+        .p-button {
+            margin: 0 auto;
+            width: 100px;
+            padding: 0.6rem 0.4rem;
         }
     }
 }

@@ -6,6 +6,7 @@ import { SearchActors } from "../searchActors/SearchActors";
 import { GenreContainer } from "../genreContainer/GenreContainer";
 import { YearContainer } from "../yearContainer/yearContainer";
 import { SearchMovieTitle } from "../searchMovieTitle/SearchMovieTitle";
+import { Button } from "primereact/button";
 
 export const SearchContainer = () => {
     const searchParameters = useSelector(selectSearchParameters);
@@ -18,13 +19,12 @@ export const SearchContainer = () => {
 
     return (
         <div className="search-container">
-            <h2>Find and sort movies by own preference</h2>
             <form onSubmit={(event) => handleSubmit(event)} className="form-container">
                 <SearchMovieTitle/>
                 <SearchActors/>
                 <GenreContainer/>
                 <YearContainer/>
-                <input type="submit" value="Search" />
+                <Button label="Search" />
             </form>
         </div>
     );
