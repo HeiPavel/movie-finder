@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {Dropdown} from 'primereact/dropdown';
 import { loadMovieTitles, selectMovieTitles, updateQuery, selectTitleTerm } from "../../features/searchMovieTitle/searchMovieTitle";
 
-export const SearchMovieTitle = React.memo(() => {
+export const SearchMovieTitle = () => {
     const titles = useSelector(selectMovieTitles);
     const term = useSelector(selectTitleTerm);
     const dispatch = useDispatch();
@@ -35,4 +35,4 @@ export const SearchMovieTitle = React.memo(() => {
             />
         </div>
     );
-})
+}

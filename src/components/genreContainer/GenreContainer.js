@@ -1,13 +1,13 @@
-import React, {useEffect, useRef} from "react";
+import React, {useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {MultiSelect} from "primereact/multiselect";                                                       
-import { updateGenres, selectGenres, loadGenres, selectSelectedGenres } from "../../features/genres/genresSlice";
+import { updateGenres, selectGenres, selectSelectedGenres } from "../../features/genres/genresSlice";
 import { elementsForRender } from "../../util/helper/elementsForRender";
 import MultiSearchSeparator from "../multiSearchSeparator/MultiSearchSeparator";
 import { selectGenreSeparator, toggleGenreSeparator } from "../../features/searchParameters/searchParametersSlice";
 import { TooltipHint } from "../tooltip/TooltipHint";
 
-export const GenreContainer = React.memo(() => {
+export const GenreContainer = () => {
     const dispatch = useDispatch();
     const genres = useSelector(selectGenres);
     const selectedGenres = useSelector(selectSelectedGenres);
@@ -18,10 +18,6 @@ export const GenreContainer = React.memo(() => {
         dispatch(updateGenres(event.value));
         if (multiselectRef.current) multiselectRef.current.hide();
     }
-
-    useEffect(() => {
-        dispatch(loadGenres());
-    }, [dispatch]);
 
     return (
         <div className="multiselect-box">
@@ -52,4 +48,4 @@ export const GenreContainer = React.memo(() => {
             </div>
         </div>
     );
-})
+}

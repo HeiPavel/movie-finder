@@ -8,7 +8,7 @@ import { selectPeopleSeparator, togglePeopleSeparator } from "../../features/sea
 import { TooltipHint } from "../tooltip/TooltipHint";
 
 
-export const SearchActors = React.memo(() => {
+export const SearchActors = () => {
     const actors = useSelector(selectActors);
     const selectedActors = useSelector(selectSelectedActors);
     const term = useSelector(selectSearchTerm);
@@ -79,4 +79,4 @@ export const SearchActors = React.memo(() => {
             </div>
         </div>
     );
-})
+}
