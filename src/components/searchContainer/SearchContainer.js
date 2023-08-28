@@ -6,7 +6,6 @@ import { SearchMovieTitle } from "../searchMovieTitle/SearchMovieTitle";
 import { SearchButton } from "../searchButton/SearchButton";
 
 export const SearchContainer = () => {
-    console.log('hello');
     return (
         <div className="search-container">
             <div className="form-container">

@@ -183,6 +183,12 @@ body {
             display: none;
         }
     }
+    .p-dropdown-items-wrapper .p-dropdown-items {
+        max-width: 250px;
+        .p-dropdown-item {
+            overflow: unset;
+        }
+    }
     .multiselect-overlay, .p-component {
         font-size: 0.85rem;
     }
