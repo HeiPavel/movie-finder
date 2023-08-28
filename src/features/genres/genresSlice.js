@@ -5,7 +5,7 @@ import { changeSelectedGenres } from "../searchParameters/searchParametersSlice"
 export const loadGenres = createAsyncThunk('genres/loadGenres',
     async () => {
         const response = await fetchGenres();
-        return response.data;
+        return response.data.map(genre => (genre.name === 'Science Fiction' || genre.name === 'TV Movie') ? {name: genre.name.split(' ').join('-'), id: genre.id} : genre);
     }
 );
 

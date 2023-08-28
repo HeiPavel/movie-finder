@@ -97,10 +97,6 @@ p {
 }
 
 .search-container {
-    height: 150px;
-    h2 {
-        text-align: center;
-    }
     .form-container {
         padding: 30px;
         display: flex;
@@ -148,7 +144,7 @@ p {
         .dropdown {
             width: 150px;
         }
-        #title-search-dropdown {
+        #title-search-dropdown, #sort-dropdown {
             width: 250px;
         }
         .p-button {

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMovies, selectSearchParams, loadMovies, addPage } from "../../features/movies/moviesSlise";
+import { selectMovies, selectSearchParams, loadMovies, addPageAndRestSortTerm } from "../../features/movies/moviesSlise";
 import { Movie } from "../movie/Movie";
 
 export const MovieListContainer = () => {
@@ -21,7 +21,7 @@ export const MovieListContainer = () => {
                     />;
                 })}
             <div className="button-container">
-                <button onClick={() => dispatch(addPage())}>Load more</button>
+                <button onClick={() => dispatch(addPageAndRestSortTerm())}>Load more</button>
             </div>
         </div>
     );
