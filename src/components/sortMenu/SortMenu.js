@@ -26,7 +26,6 @@ export const SortMenu = () => {
                     placeholder="Select sort term"
                     className="dropdown"
                     showClear
-                    id="sort-dropdown"
                 />
                 <Button label="Sort" onClick={() => dispatch(sortAndHideSidebar())} />        
             </div>

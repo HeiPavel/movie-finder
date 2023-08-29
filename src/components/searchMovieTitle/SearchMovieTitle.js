@@ -30,7 +30,6 @@ export const SearchMovieTitle = () => {
                 options={titles}
                 placeholder="Search movie title"
                 className="dropdown"
-                id="title-search-dropdown"
                 showClear={term ? true : false}
             />
         </div>

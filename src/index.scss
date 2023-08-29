@@ -126,6 +126,9 @@ p {
             display: flex;
             align-items: center;
             gap: 15px;
+            .select-container {
+                width: 100%;
+            }
         }
         .multi-checkbox {
             display: flex;
@@ -142,9 +145,9 @@ p {
             }
         }
         .multiselect, .dropdown {
-            width: 200px;
             height: 40px;
             font-size: 0.8rem;
+            width: 100%;
             .p-multiselect-clear-icon, .p-dropdown-clear-icon {
                 right: 2rem;
                 margin-top: -0.4rem;
@@ -160,12 +163,6 @@ p {
                 width: 0.8rem;
                 height: 0.8rem;
             }
-        }
-        .dropdown {
-            width: 150px;
-        }
-        #title-search-dropdown, #sort-dropdown {
-            width: 250px;
         }
         .p-button {
             margin: 0 auto;
@@ -209,6 +206,8 @@ body {
         font-size: 0.85rem;
     }
     .multiselect-overlay {
+        max-width: 270px;
+        overflow: hidden;
         .p-multiselect-header {
             padding: 0.4rem;
             .p-multiselect-filter-container {
