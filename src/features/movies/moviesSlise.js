@@ -16,7 +16,8 @@ export const loadMovies = createAsyncThunk('movies/loadMovies',
                 vote_count: movie.vote_count,
                 genre: movie.genre_ids,
                 id: movie.id,
-                matchCounter: 0
+                matchCounter: 0,
+                sortIndex: 0
             }
         });
     }
@@ -81,7 +82,17 @@ export const moviesSlice = createSlice({
         sortByTerm: (state) => {
             if (state.sortTerm) {
                 const currentSortTerm = state.sortTerm.includes('Vote') ? 'vote_average' : state.sortTerm.includes('Year') ? 'release_date' : 'matchCounter';
-                state.loading.movies.sort((a,b) => state.sortTerm.includes('asc') ? a[currentSortTerm] - b[currentSortTerm] : b[currentSortTerm] - a[currentSortTerm]);
+                state.loading.movies.sort((a,b) => {
+                    if (state.sortTerm.includes('asc')) {
+                        return a[currentSortTerm] - b[currentSortTerm];
+                    }  else {
+                        if (currentSortTerm === 'matchCounter') {
+                            return b.matchCounter === a.matchCounter ? a.sortIndex - b.sortIndex : b.matchCounter - a.matchCounter;
+                        } else {
+                            return b[currentSortTerm] - a[currentSortTerm];
+                        }
+                    }
+                });
             }
         }
     },
@@ -94,6 +105,7 @@ export const moviesSlice = createSlice({
         .addCase(loadMovies.fulfilled, (state, action) => {
             const {query, primary_release_year} = state.searchParams;
             const {array} = state.searchParams.with_genres;
+            let index = state.loading.movies.length;
             action.payload.forEach(movie => {
                 if (!Object.hasOwn(state.movieIds, movie.id)) {
                     state.movieIds[movie.id] = 1;
@@ -102,9 +114,11 @@ export const moviesSlice = createSlice({
                     if (query && movie.title.toLowerCase() === query.toLowerCase()) movie.matchCounter++;
                     if (array.length && array.some(genre => movie.genre.includes(genre))) movie.matchCounter++;
                     if (primary_release_year && movie.release_date === primary_release_year) movie.matchCounter++;
+                    movie.sortIndex = index;
+                    index++;
                 }
             });
-            state.loading.movies.sort((a, b) => b.matchCounter - a.matchCounter);
+            state.loading.movies.sort((a, b) => b.matchCounter === a.matchCounter ? a.sortIndex - b.sortIndex : b.matchCounter - a.matchCounter);
             state.loading['isLoading'] = false;
             state.loading['isError'] = false;
         })
