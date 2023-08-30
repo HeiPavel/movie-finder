@@ -127,7 +127,7 @@ p {
             align-items: center;
             gap: 15px;
             .select-container {
-                width: 100%;
+                width: 220px;
             }
         }
         .multi-checkbox {
@@ -148,9 +148,17 @@ p {
             height: 40px;
             font-size: 0.8rem;
             width: 100%;
+            background: rgb(29,28,59);
+            input[type=text], .p-multiselect-label, .p-dropdown-label {
+                color: rgb(169, 169, 179);
+            }
+            input[type=text]::placeholder, .p-multiselect-label.p-placeholder, .p-dropdown-label.p-placeholder {
+                color: rgb(169, 169, 179);
+            }
             .p-multiselect-clear-icon, .p-dropdown-clear-icon {
                 right: 2rem;
                 margin-top: -0.4rem;
+                color: rgb(169, 169, 179);
             }
             .p-multiselect-label, .p-dropdown-label {
                 padding: 0.4rem;
@@ -158,6 +166,7 @@ p {
             }
             .p-multiselect-trigger, .p-dropdown-trigger {
                 width: 1.5rem;
+                color: rgb(169, 169, 179);
             }
             .p-icon {
                 width: 0.8rem;
@@ -178,7 +187,7 @@ p {
         outline: none;
     }
     svg {
-        color: gray;
+        color: rgb(169, 169, 179);
     }
 }
 
@@ -196,22 +205,39 @@ body {
             display: none;
         }
     }
+    /*Select overlay*/
     .p-dropdown-items-wrapper .p-dropdown-items {
         max-width: 250px;
         .p-dropdown-item {
             overflow: unset;
+            color: rgb(169, 169, 179);
+        }
+        .p-dropdown-item.p-highlight {
+            background: rgb(210, 220, 252);
         }
     }
     .multiselect-overlay, .p-component {
         font-size: 0.85rem;
+    }
+    .multiselect-overlay, .p-dropdown-panel {
+        margin-top: 5px;
+        background: rgb(29,28,59);
     }
     .multiselect-overlay {
         max-width: 270px;
         overflow: hidden;
         .p-multiselect-header {
             padding: 0.4rem;
+            background: rgb(29,28,59);
             .p-multiselect-filter-container {
                 margin: 0;
+                .p-multiselect-filter {
+                    background: rgb(29,28,59);
+                    color: rgb(169, 169, 179);
+                }
+                .p-multiselect-filter::placeholder {
+                    color: rgb(169, 169, 179);
+                }
                 .p-inputtext {
                     padding: 0.2rem;
                 }
@@ -219,6 +245,7 @@ body {
             .p-multiselect-close {
                 width: 2rem;
                 height: 1.2rem;
+                color: rgb(169, 169, 179);
                 .p-icon {
                     width: 0.8rem;
                     height: 0.8rem;
@@ -226,8 +253,12 @@ body {
             }
         }
         .p-multiselect-items-wrapper {
+            .p-multiselect-item.p-highlight {
+                background: rgb(210, 220, 252);
+            }
             .p-multiselect-item {
                 padding: 0.5rem 0.75rem;
+                color: rgb(169, 169, 179);
                 .actor-container {
                     display: flex;
                     gap: 0.5rem;
@@ -257,5 +288,9 @@ body {
                 }
             }
         }
+    }
+    /*Sidebar*/
+    .p-sidebar {
+        background: rgb(22,21,45);
     }
 }

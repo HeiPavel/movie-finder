@@ -7,7 +7,7 @@ export const TooltipHint = ({content}) => {
     return (
         <div className="hint-container">
             <Tooltip 
-                target={currentTarget.current}
+                target={currentTarget}
                 event="both"
                 content={content}
                 position="right"
