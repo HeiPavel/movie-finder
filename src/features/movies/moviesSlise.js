@@ -118,7 +118,6 @@ export const moviesSlice = createSlice({
                     index++;
                 }
             });
-            state.loading.movies.sort((a, b) => b.matchCounter === a.matchCounter ? a.sortIndex - b.sortIndex : b.matchCounter - a.matchCounter);
             state.loading['isLoading'] = false;
             state.loading['isError'] = false;
         })

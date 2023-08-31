@@ -42,6 +42,10 @@ p {
     height: 785px;
     overflow-y: scroll;
     scroll-behavior: smooth;
+    .p-skeleton {
+        width: 240px;
+        height: 360px;
+    }
     .movie-card {
         position: relative;
         width: 240px;
