@@ -18,6 +18,19 @@ p {
     padding-top: 80px;
 }
 
+::-webkit-scrollbar {
+    width: 0.7rem;
+}
+
+::-webkit-scrollbar:horizontal{
+    height: 0.7rem;
+  }
+
+::-webkit-scrollbar-thumb {
+    background: #6366F1;
+    border-radius: 10px;
+}
+
 .movies-container {
     margin: 0 auto;
     padding: 15px 0;
@@ -126,7 +139,7 @@ p {
         padding: 30px;
         display: flex;
         flex-direction: column;
-        gap: 40px;
+        gap: 30px;
         .multiselect-box {
             display: flex;
             align-items: center;
