@@ -17,7 +17,8 @@ export const SortMenu = () => {
     ];
 
     return (
-        <div className="search-container">
+        <div className="search-container sort-container">
+            <p>Sort films by rating, or release year, making it a breeze to find top-rated movies or iconic classic</p>
             <div className="form-container">
                 <Dropdown 
                     value={term ? term : null}

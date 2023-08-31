@@ -23,10 +23,10 @@ p {
     padding: 15px 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, 240px);
-    grid-gap: 20px;
+    grid-gap: 30px;
     justify-content: center;
-    width: 85%;
-    height: 765px;
+    width: 90%;
+    height: 785px;
     overflow-y: scroll;
     scroll-behavior: smooth;
     .movie-card {
@@ -117,6 +117,11 @@ p {
 }
 
 .search-container {
+    p {
+        color: rgb(169, 169, 179);
+        font-size: 0.8rem;
+    }
+    padding-bottom: 1rem;
     .form-container {
         padding: 30px;
         display: flex;
@@ -179,6 +184,12 @@ p {
             padding: 0.6rem 0.4rem;
         }
     }
+}
+
+.sort-container {
+    padding-top: 3rem;
+    padding-bottom: 0;
+    border-top: 1px solid rgb(169, 169, 179);
 }
 
 /*Tooltip icon*/

@@ -8,6 +8,7 @@ import { SearchButton } from "../searchButton/SearchButton";
 export const SearchContainer = () => {
     return (
         <div className="search-container">
+            <p>Filter your search by movie title, actor's name, genre, or year of release with ease, narrowing down your options to find exactly what you're looking for</p>
             <div className="form-container">
                 <SearchMovieTitle/>
                 <SearchActors/>
