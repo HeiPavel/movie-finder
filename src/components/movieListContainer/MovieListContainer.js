@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectMovies, selectSearchParams, loadMovies, addPageAndRestSortTerm } from "../../features/movies/moviesSlise";
 import { Movie } from "../movie/Movie";
 import {Skeleton} from 'primereact/skeleton';
+import { ErrorOrEmpty } from "../errorOrEmpty/ErrorOrEmpty";
 
 export const MovieListContainer = () => {
-    const {movies, isLoading} = useSelector(selectMovies);
+    const {movies, isLoading, isError} = useSelector(selectMovies);
     const searchParams = useSelector(selectSearchParams);
     const dispatch = useDispatch();
 
@@ -23,12 +24,16 @@ export const MovieListContainer = () => {
 
     return (
         <div className="movies-container">
-            {movies.map(movie => {
+            {isError ? <ErrorOrEmpty
+                            message={'Sorry something went wrong, change search parameters or try later.'}
+            /> : movies.map(movie => {
                 return <Movie 
                         movie={movie}
                         key={movie.id}
                     />;
-                })} {isLoading ? loading() : []}
+                })} {isLoading ? loading() : (!movies.length && !isError) ? <ErrorOrEmpty
+                        message={'Sorry, nothing was found with your search parameters try to change them.'}
+                /> : []}
             <div className="button-container">
                 <button onClick={() => dispatch(addPageAndRestSortTerm())}>Load more</button>
             </div>

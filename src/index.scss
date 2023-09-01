@@ -42,6 +42,14 @@ p {
     height: 785px;
     overflow-y: scroll;
     scroll-behavior: smooth;
+    .text-message {
+        margin-top: 200px;
+        padding: 0 150px;
+        grid-area: 1 / 1 / 2 / span 6;
+        font-size: 3rem;
+        color: rgb(230,230,233);
+        text-align: center;
+    }
     .p-skeleton {
         width: 240px;
         height: 360px;
