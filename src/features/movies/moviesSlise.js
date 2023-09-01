@@ -6,7 +6,10 @@ import { toggleVisibility } from "../sidebar/sidebarSlice";
 export const loadMovies = createAsyncThunk('movies/loadMovies', 
     async (paramObj) => {
         const response = await fetchMovies(paramObj);
-        return response.data.filter(movie => movie.poster_path).map(movie => {
+        const obj = {
+            totalPages: response.data.totalPages
+        }
+        obj.movies = response.data.movies.filter(movie => movie.poster_path).map(movie => {
             return {
                 title: movie.title,
                 overview: movie.overview,
@@ -20,6 +23,7 @@ export const loadMovies = createAsyncThunk('movies/loadMovies',
                 sortIndex: 0
             }
         });
+        return obj;
     }
 );
 
@@ -29,7 +33,8 @@ export const moviesSlice = createSlice({
         loading: {
             movies: [],
             isLoading: false,
-            isError: false
+            isError: false,
+            totalPages: 0
         },
         searchParams: {
             query: '',
@@ -58,6 +63,7 @@ export const moviesSlice = createSlice({
         },
         resetMovies: (state) => {
             state.loading.movies = [];
+            state.loading.totalPages = 0;
             state.searchParams = {
                 query: '',
                 with_genres: {
@@ -106,7 +112,7 @@ export const moviesSlice = createSlice({
             const {query, primary_release_year} = state.searchParams;
             const {array} = state.searchParams.with_genres;
             let index = state.loading.movies.length;
-            action.payload.forEach(movie => {
+            action.payload.movies.forEach(movie => {
                 if (!Object.hasOwn(state.movieIds, movie.id)) {
                     state.movieIds[movie.id] = 1;
                     state.loading.movies.push(movie);
@@ -118,6 +124,7 @@ export const moviesSlice = createSlice({
                     index++;
                 }
             });
+            if (!state.loading.totalPages) state.loading.totalPages = action.payload.totalPages;
             state.loading['isLoading'] = false;
             state.loading['isError'] = false;
         })

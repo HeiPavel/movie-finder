@@ -34,8 +34,18 @@ const handler = async (event) => {
     const baseUrl = "https://api.themoviedb.org/3/";
     try {
         const response = await Promise.all([fetchByTitle(baseUrl, event.queryStringParameters, apiKey), fetchByParams(baseUrl, event.queryStringParameters, apiKey)]);
-        const data = [];
-        response.forEach(collection => data.push(...collection.results));
+        const data = {
+            movies: [],
+            totalPages: 0
+        };
+        response.forEach(collection => {
+            data.movies.push(...collection.results);
+            if (data.totalPages) {
+                if (data.totalPages < collection['total_pages']) data.totalPages = collection['total_pages'];
+            } else {
+                data.totalPages = collection['total_pages'];
+            }
+        });
         return {
             statusCode: 200,
             body: JSON.stringify({data: data})

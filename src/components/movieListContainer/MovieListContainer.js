@@ -6,7 +6,7 @@ import {Skeleton} from 'primereact/skeleton';
 import { ErrorOrEmpty } from "../errorOrEmpty/ErrorOrEmpty";
 
 export const MovieListContainer = () => {
-    const {movies, isLoading, isError} = useSelector(selectMovies);
+    const {movies, isLoading, isError, totalPages} = useSelector(selectMovies);
     const searchParams = useSelector(selectSearchParams);
     const dispatch = useDispatch();
 
@@ -15,6 +15,14 @@ export const MovieListContainer = () => {
             <>
                 {new Array(12).fill(1).map((_, index) => (<Skeleton key={index} width="" height="" />))}
             </>
+        );
+    }
+
+    const loadMore = () => {
+        return (
+            <div className="button-container">
+                <button onClick={() => dispatch(addPageAndRestSortTerm())}>Load more</button>
+            </div>
         );
     }
 
@@ -34,9 +42,7 @@ export const MovieListContainer = () => {
                 })} {isLoading ? loading() : (!movies.length && !isError) ? <ErrorOrEmpty
                         message={'Sorry, nothing was found with your search parameters try to change them.'}
                 /> : []}
-            <div className="button-container">
-                <button onClick={() => dispatch(addPageAndRestSortTerm())}>Load more</button>
-            </div>
+            {(!isLoading && !isError && movies.length && (searchParams.page < totalPages)) && loadMore()}
         </div>
     );
 }
