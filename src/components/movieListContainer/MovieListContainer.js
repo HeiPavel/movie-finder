@@ -20,8 +20,8 @@ export const MovieListContainer = () => {
 
     const loadMore = () => {
         return (
-            <div className="button-container">
-                <button onClick={() => dispatch(addPageAndRestSortTerm())}>Load more</button>
+            <div className="button-container" onClick={() => dispatch(addPageAndRestSortTerm())}>
+                <p>Load more...</p>
             </div>
         );
     }

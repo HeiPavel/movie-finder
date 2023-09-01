@@ -116,18 +116,25 @@ p {
             }
         }
     }
-    .movie-card:hover {
+    .button-container {
+        width: 240px;
+        height: 360px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: rgb(230,230,233);
+        background: rgba(39, 37, 37, 0.5);
+        box-shadow: 0 0 10px 3px rgba(50, 49, 51, 0.4);
+        cursor: pointer;
+        transition: 0.5s ease;
+    }
+    .movie-card:hover, .button-container:hover {
         box-shadow: 0 0 10px 3px rgba(236, 193, 4, 0.6);
         filter: saturate(150%);
         img {
             transform: scale(1.05);
         }
-    }
-    .button-container {
-        width: 240px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
     }
 }
 

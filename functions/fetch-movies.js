@@ -40,11 +40,7 @@ const handler = async (event) => {
         };
         response.forEach(collection => {
             data.movies.push(...collection.results);
-            if (data.totalPages) {
-                if (data.totalPages < collection['total_pages']) data.totalPages = collection['total_pages'];
-            } else {
-                data.totalPages = collection['total_pages'];
-            }
+            if (data.totalPages < collection['total_pages']) data.totalPages = collection['total_pages'];
         });
         return {
             statusCode: 200,
