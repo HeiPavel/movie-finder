@@ -3,8 +3,8 @@ import { fetchActors } from "../../util/personRequest";
 import { addPeople } from "../searchParameters/searchParametersSlice";
 
 export const loadActors = createAsyncThunk('searchActors/loadActors',
-    async (term) => {
-        const response = await fetchActors(term);
+    async ({term, language}) => {
+        const response = await fetchActors(term, language);
         return response.data.results.map(person => {
             return {
                 name: person.name,

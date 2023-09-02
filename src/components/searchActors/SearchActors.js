@@ -6,6 +6,7 @@ import { elementsForRender } from "../../util/helper/elementsForRender";
 import MultiSearchSeparator from "../multiSearchSeparator/MultiSearchSeparator";
 import { selectPeopleSeparator, togglePeopleSeparator } from "../../features/searchParameters/searchParametersSlice";
 import { TooltipHint } from "../tooltip/TooltipHint";
+import { selectLanguage } from "../../features/movies/moviesSlise";
 
 
 export const SearchActors = () => {
@@ -13,6 +14,7 @@ export const SearchActors = () => {
     const selectedActors = useSelector(selectSelectedActors);
     const term = useSelector(selectSearchTerm);
     const separator = useSelector(selectPeopleSeparator);
+    const language = useSelector(selectLanguage);
     const dispatch = useDispatch();
     const multiselectRef = useRef(null);
 
@@ -42,8 +44,8 @@ export const SearchActors = () => {
     }
 
     useEffect(() => {
-        term ? dispatch(loadActors(term)) : dispatch(clearActors());
-    }, [dispatch, term]);
+        term ? dispatch(loadActors({term, language})) : dispatch(clearActors());
+    }, [dispatch, term, language]);
 
     return (
         <div className="multiselect-box">
@@ -53,6 +55,7 @@ export const SearchActors = () => {
                     value={selectedActors}
                     onChange={handleChange}
                     filter
+                    filterMatchMode="notEquals"
                     onFilter={(event) => dispatch(changeTerm(event.filter))}
                     options={elementsForRender(selectedActors, actors)}
                     optionLabel="name" 

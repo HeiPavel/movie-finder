@@ -2,9 +2,9 @@ import fetch from "node-fetch";
 
 const handler = async (event) => {
     const apiKey = process.env.API_KEY;
-    const {term} = event.queryStringParameters;
+    const {term, language} = event.queryStringParameters;
     const baseUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}`;
-    const url = baseUrl + `&query=${term}`;
+    const url = baseUrl + `&query=${term}&language=${language}&page=1`;
     try {
         const response = await fetch(url);
         const jsonResponse = await response.json();
