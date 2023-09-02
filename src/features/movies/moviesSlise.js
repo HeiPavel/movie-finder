@@ -169,4 +169,11 @@ export const sortAndHideSidebar = () => {
     }
 }
 
+export const toggleLanguageAndReloadMovies = (payload) => {
+    return dispatch => {
+        dispatch(resetMovies());
+        dispatch(toggleLanguage(payload));
+    }
+}
+
 export default moviesSlice.reducer;

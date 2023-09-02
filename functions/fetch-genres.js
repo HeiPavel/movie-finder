@@ -1,9 +1,10 @@
 import fetch from "node-fetch";
 
-const handler = async () => {
+const handler = async (event) => {
     const apiKey = process.env.API_KEY;
+    const {language} = event.queryStringParameters;
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
+        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=${language}`);
         const jsonResponse = await response.json();
         const data = jsonResponse.genres.map(genre => {
             return {

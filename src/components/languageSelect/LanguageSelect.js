@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectLanguage, toggleLanguage } from "../../features/movies/moviesSlise";
+import { selectLanguage, toggleLanguageAndReloadMovies } from "../../features/movies/moviesSlise";
 import {SelectButton} from 'primereact/selectbutton';
 
 export const LanguageSelect = () => {
@@ -22,7 +22,7 @@ export const LanguageSelect = () => {
 
     return (
         <div className="language-select">
-                <SelectButton value={language.find(lan => lan.term === value)} onChange={(event) => dispatch(toggleLanguage(event.value))} itemTemplate={justifyTemplate} options={language} />
+                <SelectButton value={language.find(lan => lan.term === value)} onChange={(event) => dispatch(toggleLanguageAndReloadMovies(event.value))} itemTemplate={justifyTemplate} options={language} />
         </div>
     );
 }

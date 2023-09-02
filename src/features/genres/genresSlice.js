@@ -3,8 +3,8 @@ import { fetchGenres } from "../../util/genresRequest";
 import { changeSelectedGenres } from "../searchParameters/searchParametersSlice";
 
 export const loadGenres = createAsyncThunk('genres/loadGenres',
-    async () => {
-        const response = await fetchGenres();
+    async (language) => {
+        const response = await fetchGenres(language);
         return response.data.map(genre => (genre.name === 'Science Fiction' || genre.name === 'TV Movie') ? {name: genre.name.split(' ').join('-'), id: genre.id} : genre);
     }
 );
@@ -23,7 +23,7 @@ export const genresSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(loadGenres.fulfilled, (state, action) => {
-            state.genres.push(...action.payload);
+            state.genres = action.payload;
         })
     }
 });
