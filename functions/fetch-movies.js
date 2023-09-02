@@ -16,9 +16,9 @@ const fetchByParams = async (baseUrl, queryObj, apiKey) => {
 }
 
 const fetchByTitle = async (baseUrl, queryObj, apiKey) => {
-    const {page, query} = queryObj;
+    const {page, query, language} = queryObj;
     if (!query) return {results: []};
-    const querySearch = `&query=${query}&page=${page}`;
+    const querySearch = `&query=${query}&language=${language}&page=${page}`;
     const url = `${baseUrl}search/movie?api_key=${apiKey}&${querySearch}`;
     try {
         const response = await fetch(url);

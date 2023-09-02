@@ -3,8 +3,8 @@ import { fetchMovieTitles } from "../../util/titlesRequest";
 import { changeQuery } from "../searchParameters/searchParametersSlice";
 
 export const loadMovieTitles = createAsyncThunk('movieTitles/loadMovieTitles',
-    async (query) => {
-        const response = await fetchMovieTitles(query);
+    async ({term, language}) => {
+        const response = await fetchMovieTitles(term, language);
         return response.data;
     }
 );

@@ -2,16 +2,18 @@ import React, {useEffect, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {Dropdown} from 'primereact/dropdown';
 import { loadMovieTitles, selectMovieTitles, updateQuery, selectTitleTerm } from "../../features/searchMovieTitle/searchMovieTitle";
+import { selectLanguage } from "../../features/movies/moviesSlise";
 
 export const SearchMovieTitle = () => {
     const titles = useSelector(selectMovieTitles);
     const term = useSelector(selectTitleTerm);
+    const language = useSelector(selectLanguage);
     const dispatch = useDispatch();
     const dropdown = useRef(null);
 
     useEffect(() => {
-        if (term) dispatch(loadMovieTitles(term));
-    }, [dispatch, term]);
+        if (term) dispatch(loadMovieTitles({term, language}));
+    }, [dispatch, term, language]);
     
 
     const handleChange = (event) => {

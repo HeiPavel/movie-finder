@@ -47,7 +47,8 @@ export const moviesSlice = createSlice({
                 separator: false
             },
             primary_release_year: '',
-            page: 1
+            language: 'en-US',
+            page: 1,
         },
         movieIds: {},
         sortTerm: ''
@@ -75,9 +76,13 @@ export const moviesSlice = createSlice({
                     separator: false
                 },
                 primary_release_year: '',
-                page: 1
+                language: state.searchParams.language,
+                page: 1,
             }
             state.movieIds = {};
+        },
+        toggleLanguage: (state, action) => {
+            state.searchParams.language = action.payload.term;
         },
         changeSortTerm: (state, action) => {
             state.sortTerm = action.payload;
@@ -136,9 +141,10 @@ export const moviesSlice = createSlice({
 });
 
 export const selectMovies = (state) => state.movies.loading;
+export const selectLanguage = (state) => state.movies.searchParams.language;
 export const selectSearchParams = (state) => state.movies.searchParams;
 export const selectSortTerm = (state) => state.movies.sortTerm;
-export const {addPage, updateSearchParams, resetMovies, changeSortTerm, resetSortTerm, sortByTerm} = moviesSlice.actions;
+export const {addPage, updateSearchParams, resetMovies, changeSortTerm, resetSortTerm, sortByTerm, toggleLanguage} = moviesSlice.actions;
 export const resetAndUpdate = (payload) => {
     return dispatch => {
         dispatch(resetMovies());
