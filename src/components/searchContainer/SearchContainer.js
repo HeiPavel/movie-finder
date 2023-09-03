@@ -1,14 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { SearchActors } from "../searchActors/SearchActors";
 import { GenreContainer } from "../genreContainer/GenreContainer";
 import { YearContainer } from "../yearContainer/yearContainer";
 import { SearchMovieTitle } from "../searchMovieTitle/SearchMovieTitle";
 import { SearchButton } from "../searchButton/SearchButton";
+import { selectLanguage } from "../../features/movies/moviesSlise";
+import { selectContent } from "../../features/content/contentSlice";
 
 export const SearchContainer = () => {
+    const language = useSelector(selectLanguage);
+    const content = useSelector(selectContent);
+
     return (
         <div className="search-container">
-            <p>Filter your search by movie title, actor's name, genre, or year of release with ease, narrowing down your options to find exactly what you're looking for</p>
+            <p>{content[language].searchText}</p>
             <div className="form-container">
                 <SearchMovieTitle/>
                 <SearchActors/>

@@ -7,6 +7,7 @@ import MultiSearchSeparator from "../multiSearchSeparator/MultiSearchSeparator";
 import { selectPeopleSeparator, togglePeopleSeparator } from "../../features/searchParameters/searchParametersSlice";
 import { TooltipHint } from "../tooltip/TooltipHint";
 import { selectLanguage } from "../../features/movies/moviesSlise";
+import { selectContent } from "../../features/content/contentSlice";
 
 
 export const SearchActors = () => {
@@ -15,6 +16,7 @@ export const SearchActors = () => {
     const term = useSelector(selectSearchTerm);
     const separator = useSelector(selectPeopleSeparator);
     const language = useSelector(selectLanguage);
+    const content = useSelector(selectContent);
     const dispatch = useDispatch();
     const multiselectRef = useRef(null);
 
@@ -60,8 +62,8 @@ export const SearchActors = () => {
                     options={elementsForRender(selectedActors, actors)}
                     optionLabel="name" 
                     display="comma"
-                    placeholder="Select actors"
-                    filterPlaceholder="Search actors"
+                    placeholder={content[language].actorSelectPlaceholder}
+                    filterPlaceholder={content[language].actorSearchPlaceholder}
                     className="multiselect"
                     panelClassName="multiselect-overlay"
                     showSelectAll={false}
@@ -77,7 +79,7 @@ export const SearchActors = () => {
                     action={togglePeopleSeparator}
                 />
                 <TooltipHint 
-                    content={"'+(and)' - search for movies that include all selected actors, '-(or)' - search for movies that include at least one actor"}
+                    content={content[language].actorsTooltipText}
                 />
             </div>
         </div>

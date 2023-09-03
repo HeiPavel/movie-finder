@@ -3,33 +3,32 @@ import { useSelector, useDispatch } from "react-redux";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { selectSortTerm, changeSortTerm, sortAndHideSidebar } from "../../features/movies/moviesSlise";
+import { selectLanguage } from "../../features/movies/moviesSlise";
+import { selectContent } from "../../features/content/contentSlice";
 
 export const SortMenu = () => {
     const term = useSelector(selectSortTerm);
+    const language = useSelector(selectLanguage);
+    const content = useSelector(selectContent);
     const dispatch = useDispatch();
 
-    const options = [
-        'Best match',
-        'Vote ascending',
-        'Vote descending',
-        'Year ascending',
-        'Year descending'
-    ];
+    const options = content[language].options;
 
     return (
         <div className="search-container sort-container">
-            <p>Sort films by rating, or release year, making it a breeze to find top-rated movies or iconic classic</p>
+            <p>{content[language].sortText}</p>
             <div className="form-container">
                 <Dropdown 
-                    value={term ? term : null}
+                    value={term ? options.find(el => el.term === term) : null}
                     options={options}
-                    onChange={(event) => dispatch(changeSortTerm(event.value))}
-                    placeholder="Select sort term"
+                    optionLabel="name"
+                    onChange={(event) => dispatch(changeSortTerm(event.value ? event.value.term : ''))}
+                    placeholder={content[language].sortPlaceholder}
                     className="dropdown"
                     showClear
                     scrollHeight="120px"
                 />
-                <Button label="Sort" onClick={() => dispatch(sortAndHideSidebar())} />        
+                <Button label={content[language].sortButtonText} onClick={() => dispatch(sortAndHideSidebar())} />        
             </div>
         </div>
     );

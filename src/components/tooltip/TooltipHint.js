@@ -10,7 +10,7 @@ export const TooltipHint = ({content}) => {
                 target={currentTarget}
                 event="both"
                 content={content}
-                position="right"
+                position="bottom"
             />
             <svg className="hint-icon" 
                 ref={currentTarget} 

@@ -6,12 +6,16 @@ import { elementsForRender } from "../../util/helper/elementsForRender";
 import MultiSearchSeparator from "../multiSearchSeparator/MultiSearchSeparator";
 import { selectGenreSeparator, toggleGenreSeparator } from "../../features/searchParameters/searchParametersSlice";
 import { TooltipHint } from "../tooltip/TooltipHint";
+import { selectLanguage } from "../../features/movies/moviesSlise";
+import { selectContent } from "../../features/content/contentSlice";
 
 export const GenreContainer = () => {
     const dispatch = useDispatch();
     const genres = useSelector(selectGenres);
     const selectedGenres = useSelector(selectSelectedGenres);
     const separator = useSelector(selectGenreSeparator);
+    const language = useSelector(selectLanguage);
+    const content = useSelector(selectContent);
     const multiselectRef = useRef(null);
 
     const handleChange = (event) => {
@@ -29,7 +33,7 @@ export const GenreContainer = () => {
                     options={elementsForRender(selectedGenres, genres)}
                     optionLabel="name" 
                     display="comma"
-                    placeholder="Select genres"
+                    placeholder={content[language].genrePlaceholder}
                     className="multiselect"
                     panelClassName="multiselect-overlay"
                     showSelectAll={false}
@@ -43,7 +47,7 @@ export const GenreContainer = () => {
                     action={toggleGenreSeparator}
                 />
                 <TooltipHint 
-                    content={"'+(and)' - search for movies that include all selected genres, '-(or)' - search for movies that include at least one genre"}
+                    content={content[language].genresTooltipText}
                 />
             </div>
         </div>

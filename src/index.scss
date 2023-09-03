@@ -263,13 +263,14 @@ p {
 
 body {
     /*Tooltip style*/
-    .p-tooltip.p-tooltip-right {
+    .p-tooltip.p-tooltip-bottom {
         padding: 0;
-        transform: translate(-40px, 25px);
+        transform: translate(0, 10px);
         .p-tooltip-text {
             padding: 0.25rem 0.3rem 0.3rem 0.3rem;
             font-size: 0.7rem;
             background: gray;
+            max-width: 400px;
         }
         .p-tooltip-arrow {
             display: none;

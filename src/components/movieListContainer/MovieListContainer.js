@@ -1,13 +1,16 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMovies, selectSearchParams, loadMovies, addPageAndRestSortTerm } from "../../features/movies/moviesSlise";
+import { selectMovies, selectSearchParams, loadMovies, addPageAndRestSortTerm, selectLanguage } from "../../features/movies/moviesSlise";
 import { Movie } from "../movie/Movie";
 import {Skeleton} from 'primereact/skeleton';
 import { ErrorOrEmpty } from "../errorOrEmpty/ErrorOrEmpty";
+import { selectContent } from "../../features/content/contentSlice";
 
 export const MovieListContainer = () => {
     const {movies, isLoading, isError, totalPages} = useSelector(selectMovies);
     const searchParams = useSelector(selectSearchParams);
+    const language = useSelector(selectLanguage);
+    const content = useSelector(selectContent);
     const dispatch = useDispatch();
 
     const loading = () => {
@@ -21,7 +24,7 @@ export const MovieListContainer = () => {
     const loadMore = () => {
         return (
             <div className="button-container" onClick={() => dispatch(addPageAndRestSortTerm())}>
-                <p>Load more...</p>
+                <p>{content[language].loadMore}</p>
             </div>
         );
     }

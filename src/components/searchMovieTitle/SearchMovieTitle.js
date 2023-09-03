@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import {Dropdown} from 'primereact/dropdown';
 import { loadMovieTitles, selectMovieTitles, updateQuery, selectTitleTerm } from "../../features/searchMovieTitle/searchMovieTitle";
 import { selectLanguage } from "../../features/movies/moviesSlise";
+import { selectContent } from "../../features/content/contentSlice";
 
 export const SearchMovieTitle = () => {
     const titles = useSelector(selectMovieTitles);
     const term = useSelector(selectTitleTerm);
     const language = useSelector(selectLanguage);
+    const content = useSelector(selectContent);
     const dispatch = useDispatch();
     const dropdown = useRef(null);
 
@@ -30,7 +32,7 @@ export const SearchMovieTitle = () => {
                 editable
                 onChange={handleChange}
                 options={titles}
-                placeholder="Search movie title"
+                placeholder={content[language].titlePlaceholder}
                 className="dropdown"
                 showClear={term ? true : false}
             />
