@@ -12,6 +12,10 @@ export const LanguageSelect = () => {
         {name: 'Ukrainian', code: 'ua', term: 'uk'}
     ];
 
+    const handleChange = (event) => {
+        if (event.value && event.value.term !== value) dispatch(toggleLanguageAndReloadMovies(event.value));
+    }
+
     const justifyTemplate = (option) => {
         return (
             <div className="flag-box">
@@ -22,7 +26,12 @@ export const LanguageSelect = () => {
 
     return (
         <div className="language-select">
-                <SelectButton value={language.find(lan => lan.term === value)} onChange={(event) => dispatch(toggleLanguageAndReloadMovies(event.value))} itemTemplate={justifyTemplate} options={language} />
+                <SelectButton 
+                    value={language.find(lan => lan.term === value)} 
+                    onChange={handleChange} 
+                    itemTemplate={justifyTemplate} 
+                    options={language}
+                />
         </div>
     );
 }
