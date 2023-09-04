@@ -14,10 +14,6 @@ p {
     margin: 0;
 }
 
-#root {
-    padding-top: 80px;
-}
-
 ::-webkit-scrollbar {
     width: 0.7rem;
 }
@@ -32,6 +28,8 @@ p {
 }
 
 .movies-container {
+    position: relative;
+    top: 80px;
     margin: 0 auto;
     padding: 15px 0;
     display: grid;
@@ -222,6 +220,12 @@ p {
     padding-top: 3rem;
     padding-bottom: 0;
     border-top: 1px solid rgb(169, 169, 179);
+}
+
+.movie-page {
+    width: 100%;
+    min-height: 100vh;
+    background: white;
 }
 
 /*Tooltip icon*/

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/genres/genresSlice";
-import 'primeicons/primeicons.css';
+import { Link } from "react-router-dom";
 
 export const Movie = ({movie}) => {
     const {title, poster, genre, vote_average, vote_count} = movie;
@@ -10,7 +10,7 @@ export const Movie = ({movie}) => {
     const voteToDisplay = vote_average/Math.floor(vote_average) > 1 ? vote_average.toFixed(1) : vote_average;
 
     return (
-        <>
+        <Link to={`/movie/${movie.id}`}>
             <figure className="movie-card">
                 <img src={poster} alt={`title: ${title}`}></img>
                 <figcaption className="movie-description">
@@ -21,6 +21,6 @@ export const Movie = ({movie}) => {
                     </div>
                 </figcaption>
             </figure>
-        </>
+        </Link>
     );
 }

@@ -1,15 +1,18 @@
 import React from "react";
-import { MovieListContainer } from "../movieListContainer/MovieListContainer";
-import { SidebarContainer } from "../sidebarContainer/SidebarContainer";
-import { LoadGenres } from "../loadGenres/LoadGenres";
+import { MainPage } from "../mainPage/MainPage";
+import { MoviePage } from "../moviePage/MoviePage";
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
+
+const router = createBrowserRouter(createRoutesFromElements(
+  <>
+    <Route path="/" element={<MainPage/>} />
+    <Route path="/movie/:id" element={<MoviePage />} />
+  </>
+));
 
 function App() {
   return (
-    <>
-      <LoadGenres/>
-      <SidebarContainer/>
-      <MovieListContainer/>
-    </>
+    <RouterProvider router={router} />
   );
 }
 
