@@ -34,6 +34,20 @@ export const searchParametersSlice = createSlice({
         },
         togglePeopleSeparator: (state, action) => {
             state.searchParameters.with_people.separator = action.payload;
+        },
+        resetSearchParameters: (state) => {
+            state.searchParameters = {
+                query: '',
+                with_genres: {
+                    array: [],
+                    separator: false
+                },
+                with_people: {
+                    array: [],
+                    separator: false
+                },
+                primary_release_year: ''
+            }
         }
     }
 });
@@ -43,5 +57,5 @@ export const selectYear = (state) => state.searchParameters.searchParameters.pri
 export const selectGenreSeparator = (state) => state.searchParameters.searchParameters.with_genres.separator;
 export const selectPeopleSeparator = (state) => state.searchParameters.searchParameters.with_people.separator;
 
-export const {addPeople, changeSelectedGenres, chooseYear, toggleGenreSeparator, togglePeopleSeparator, changeQuery} = searchParametersSlice.actions;
+export const {addPeople, changeSelectedGenres, chooseYear, toggleGenreSeparator, togglePeopleSeparator, changeQuery, resetSearchParameters} = searchParametersSlice.actions;
 export default searchParametersSlice.reducer;

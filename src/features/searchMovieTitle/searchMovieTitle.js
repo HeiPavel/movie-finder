@@ -18,6 +18,10 @@ export const searchMovieTitleSlice = createSlice({
     reducers: {
         changeTerm: (state, action) => {
             state.term = action.payload;
+        },
+        resetTitles: (state) => {
+            state.term = '';
+            state.titles = [];
         }
     },
     extraReducers: (builder) => {
@@ -31,7 +35,7 @@ export const searchMovieTitleSlice = createSlice({
 export const selectMovieTitles = (state) => state.movieTitles.titles;
 export const selectTitleTerm = (state) => state.movieTitles.term;
 
-export const {changeTerm} = searchMovieTitleSlice.actions;
+export const {changeTerm, resetTitles} = searchMovieTitleSlice.actions;
 export const updateQuery = (payload) => {
     return dispatch => {
         dispatch(changeTerm(payload));

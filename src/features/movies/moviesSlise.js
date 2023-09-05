@@ -1,7 +1,10 @@
 import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import { fetchMovies } from "../../util/moviesRequest";
-import { resetActors } from "../searchActors/searchActorsSlice";
+import { resetActors, addActor } from "../searchActors/searchActorsSlice";
 import { toggleVisibility } from "../sidebar/sidebarSlice";
+import { resetSearchParameters } from "../searchParameters/searchParametersSlice";
+import { resetGenres } from "../genres/genresSlice";
+import { resetTitles } from "../searchMovieTitle/searchMovieTitle";
 
 export const loadMovies = createAsyncThunk('movies/loadMovies', 
     async (paramObj) => {
@@ -173,6 +176,11 @@ export const toggleLanguageAndReloadMovies = (payload) => {
     return dispatch => {
         dispatch(resetMovies());
         dispatch(toggleLanguage(payload));
+        dispatch(resetTitles());
+        dispatch(addActor([]));
+        dispatch(resetGenres());
+        dispatch(resetSearchParameters());
+        dispatch(resetSortTerm());
     }
 }
 
