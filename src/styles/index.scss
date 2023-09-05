@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Vesper+Libre:wght@400;700&display=swap');
+@import "variables";
 
 html,
 body {
@@ -6,7 +7,7 @@ body {
   position: relative;
   font-size: 18px;
   margin: 0;
-  background: rgb(22,21,45);
+  background: $main-bg-color;
 }
 
 p {
@@ -23,7 +24,7 @@ p {
   }
 
 ::-webkit-scrollbar-thumb {
-    background: #6366F1;
+    background: $prime-purple-color;
     border-radius: 10px;
 }
 
@@ -45,7 +46,7 @@ p {
         padding: 0 150px;
         grid-area: 1 / 1 / 2 / span 6;
         font-size: 3rem;
-        color: rgb(230,230,233);
+        color: $white-text-color;
         text-align: center;
     }
     .p-skeleton {
@@ -77,13 +78,13 @@ p {
             flex-direction: column;
             justify-content: space-between;
             padding-bottom: 0.5rem;
-            background: rgb(29,28,59);
+            background: $movie-desc-color;
             .title {
                 padding: 0.3rem 0.8rem;
                 font-size: 1.1rem;
                 max-height: 3rem;
                 overflow: hidden;
-                color: rgb(230,230,233);
+                color: $white-text-color;
             }
             .statistic-box {
                 display: flex;
@@ -97,11 +98,11 @@ p {
                     display: flex;
                     align-items: center;
                     gap: 7px;
-                    color: rgb(230,230,233);
+                    color: $white-text-color;
                     i {
                         position: relative;
                         font-size: 0.8rem;
-                        color: orange;
+                        color: $star-color;
                         top: -0.1rem;
                     }
                 }
@@ -109,7 +110,7 @@ p {
                     width: 50%;
                     word-spacing: 2rem;
                     text-align: right;
-                    color: rgb(169, 169, 179);
+                    color: $secondary-text-color;
                 }
             }
         }
@@ -121,14 +122,14 @@ p {
         justify-content: center;
         align-items: center;
         font-size: 2rem;
-        color: rgb(230,230,233);
-        background: rgba(39, 37, 37, 0.5);
-        box-shadow: 0 0 10px 3px rgba(50, 49, 51, 0.4);
+        color: $white-text-color;
+        background: $load-more-color;
+        box-shadow: 0 0 10px 3px $load-more-shadow-color;
         cursor: pointer;
         transition: 0.5s ease;
     }
     .movie-card:hover, .button-container:hover {
-        box-shadow: 0 0 10px 3px rgba(236, 193, 4, 0.6);
+        box-shadow: 0 0 10px 3px $hover-color;
         filter: saturate(150%);
         img {
             transform: scale(1.05);
@@ -148,7 +149,7 @@ p {
 
 .search-container {
     p {
-        color: rgb(169, 169, 179);
+        color: $secondary-text-color;
         font-size: 0.8rem;
     }
     padding-bottom: 1rem;
@@ -183,17 +184,17 @@ p {
             height: 40px;
             font-size: 0.8rem;
             width: 100%;
-            background: rgb(29,28,59);
+            background: $movie-desc-color;
             input[type=text], .p-multiselect-label, .p-dropdown-label {
-                color: rgb(169, 169, 179);
+                color: $secondary-text-color;
             }
             input[type=text]::placeholder, .p-multiselect-label.p-placeholder, .p-dropdown-label.p-placeholder {
-                color: rgb(169, 169, 179);
+                color: $secondary-text-color;
             }
             .p-multiselect-clear-icon, .p-dropdown-clear-icon {
                 right: 2rem;
                 margin-top: -0.4rem;
-                color: rgb(169, 169, 179);
+                color: $secondary-text-color;
             }
             .p-multiselect-label, .p-dropdown-label {
                 padding: 0.4rem;
@@ -201,7 +202,7 @@ p {
             }
             .p-multiselect-trigger, .p-dropdown-trigger {
                 width: 1.5rem;
-                color: rgb(169, 169, 179);
+                color: $secondary-text-color;
             }
             .p-icon {
                 width: 0.8rem;
@@ -219,7 +220,7 @@ p {
 .sort-container {
     padding-top: 3rem;
     padding-bottom: 0;
-    border-top: 1px solid rgb(169, 169, 179);
+    border-top: 1px solid $secondary-text-color;
 }
 
 .movie-page {
@@ -234,7 +235,7 @@ p {
         outline: none;
     }
     svg {
-        color: rgb(169, 169, 179);
+        color: $secondary-text-color;
     }
 }
 
@@ -268,7 +269,7 @@ p {
             }
         }
         .p-button:first-child {
-            border-right: 2px solid rgb(169, 169, 179);
+            border-right: 2px solid $secondary-text-color;
         }
         .p-button.p-highlight {
             background: transparent;
@@ -278,7 +279,7 @@ p {
         }
         .p-button.p-focus, .p-button.p-highlight:hover, .p-button:not(.p-disabled):not(.p-highlight):hover, .p-button:not(.p-disabled):not(.p-highlight):hover {
             background: transparent;
-            border-color: rgb(169, 169, 179);
+            border-color: $secondary-text-color;
         }
         .p-button:focus {
             background: transparent;
@@ -295,7 +296,7 @@ body {
         .p-tooltip-text {
             padding: 0.25rem 0.3rem 0.3rem 0.3rem;
             font-size: 0.7rem;
-            background: gray;
+            background: $tooltip-bg-color;
             max-width: 400px;
         }
         .p-tooltip-arrow {
@@ -307,10 +308,10 @@ body {
         max-width: 250px;
         .p-dropdown-item {
             overflow: unset;
-            color: rgb(169, 169, 179);
+            color: $secondary-text-color;
         }
         .p-dropdown-item.p-highlight {
-            background: rgb(210, 220, 252);
+            background: $highlight-item-color;
         }
     }
     .multiselect-overlay, .p-component {
@@ -318,22 +319,22 @@ body {
     }
     .multiselect-overlay, .p-dropdown-panel {
         margin-top: 5px;
-        background: rgb(29,28,59);
+        background: $movie-desc-color;
     }
     .multiselect-overlay {
         max-width: 270px;
         overflow: hidden;
         .p-multiselect-header {
             padding: 0.4rem;
-            background: rgb(29,28,59);
+            background: $movie-desc-color;
             .p-multiselect-filter-container {
                 margin: 0;
                 .p-multiselect-filter {
-                    background: rgb(29,28,59);
-                    color: rgb(169, 169, 179);
+                    background: $movie-desc-color;
+                    color: $secondary-text-color;
                 }
                 .p-multiselect-filter::placeholder {
-                    color: rgb(169, 169, 179);
+                    color: $secondary-text-color;
                 }
                 .p-inputtext {
                     padding: 0.2rem;
@@ -342,7 +343,7 @@ body {
             .p-multiselect-close {
                 width: 2rem;
                 height: 1.2rem;
-                color: rgb(169, 169, 179);
+                color: $secondary-text-color;
                 .p-icon {
                     width: 0.8rem;
                     height: 0.8rem;
@@ -351,11 +352,11 @@ body {
         }
         .p-multiselect-items-wrapper {
             .p-multiselect-item.p-highlight {
-                background: rgb(210, 220, 252);
+                background: $highlight-item-color;
             }
             .p-multiselect-item {
                 padding: 0.5rem 0.75rem;
-                color: rgb(169, 169, 179);
+                color: $secondary-text-color;
                 .actor-container {
                     display: flex;
                     gap: 0.5rem;
@@ -374,7 +375,7 @@ body {
                             svg {
                                 height: 1.6rem;
                                 width: 1.6rem;
-                                color: gray;
+                                color: $secondary-text-color;
                             }
                         }
                         img {
@@ -388,6 +389,6 @@ body {
     }
     /*Sidebar*/
     .p-sidebar {
-        background: rgb(22,21,45);
+        background: $main-bg-color;
     }
 }
