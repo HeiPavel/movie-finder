@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Vesper+Libre:wght@400;700&display=swap');
 @import "variables";
+@import "mixins";
 
 html,
 body {
@@ -37,8 +38,7 @@ p {
     grid-template-columns: repeat(auto-fill, 240px);
     grid-gap: 30px;
     justify-content: center;
-    width: 90%;
-    height: 785px;
+    @include size(90%, 785px);
     overflow-y: scroll;
     scroll-behavior: smooth;
     .text-message {
@@ -50,13 +50,11 @@ p {
         text-align: center;
     }
     .p-skeleton {
-        width: 240px;
-        height: 360px;
+        @include size(240px, 360px);
     }
     .movie-card {
         position: relative;
-        width: 240px;
-        height: 360px;
+        @include size(240px, 360px);
         margin: 0;
         box-shadow: 0 0 10px 3px rgba(62, 57, 207, 0.4);
         font-family: 'Roboto', sans-serif;
@@ -64,19 +62,15 @@ p {
         overflow: hidden;
         transition: 0.5s ease;
         img {
-            width: 100%;
-            height: 100%;
+            @include size(100%, 100%);
             transform: scale(1);
             transition: 0.5s ease;
         }
         .movie-description {
             position: absolute;
             bottom: 0;
-            height: 30%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            @include size(100%, 30%);
+            @include flex(space-between, column);
             padding-bottom: 0.5rem;
             background: $movie-desc-color;
             .title {
@@ -87,16 +81,13 @@ p {
                 color: $white-text-color;
             }
             .statistic-box {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                @include flex(space-between, row, center);
                 padding: 0.1rem 1rem;
                 font-size: 0.8rem;
                 height: 2.1rem;
                 .vote-box {
                     position: relative;
-                    display: flex;
-                    align-items: center;
+                    @include flex(normal, row, center);
                     gap: 7px;
                     color: $white-text-color;
                     i {
@@ -116,11 +107,8 @@ p {
         }
     }
     .button-container {
-        width: 240px;
-        height: 360px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include size(240px, 360px);
+        @include flex(center, row, center);
         font-size: 2rem;
         color: $white-text-color;
         background: $load-more-color;
@@ -142,8 +130,7 @@ p {
     position: absolute;
     top: 0.5rem;
     .p-button.p-button-icon-only {
-        height: 2rem;
-        width: 2rem;
+        @include size(2rem, 2rem);
     }
 }
 
@@ -155,35 +142,28 @@ p {
     padding-bottom: 1rem;
     .form-container {
         padding: 30px;
-        display: flex;
-        flex-direction: column;
+        @include flex(normal, column);
         gap: 30px;
         .multiselect-box {
-            display: flex;
-            align-items: center;
+            @include flex(normal, row, center);
             gap: 15px;
             .select-container {
                 width: 220px;
             }
         }
         .multi-checkbox {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            @include flex(center, column, center);
             gap: 8px;
             .p-checkbox, .p-checkbox .p-checkbox-box {
-                width: 20px;
-                height: 20px;
+                @include size(20px, 20px);
             }
             .checkbox-value {
                 font-size: 0.9rem;
             }
         }
         .multiselect, .dropdown {
-            height: 40px;
             font-size: 0.8rem;
-            width: 100%;
+            @include size(100%, 40px);
             background: $movie-desc-color;
             input[type=text], .p-multiselect-label, .p-dropdown-label {
                 color: $secondary-text-color;
@@ -205,8 +185,7 @@ p {
                 color: $secondary-text-color;
             }
             .p-icon {
-                width: 0.8rem;
-                height: 0.8rem;
+                @include size(0.8rem, 0.8rem);
             }
         }
         .p-button {
@@ -251,15 +230,12 @@ p {
             border: none;
             border-radius: 0;
             .flag-box {
-                width: 30px;
-                height: 20px;
-                display: flex;
-                align-items: center;
+                @include size(30px, 20px);
+                @include flex(normal, row, center);
                 filter: saturate(50%) opacity(50%) contrast(100%);
                 transition: 0.5s ease;
                 img {
-                    width: 100%;
-                    height: 100%;
+                    @include size(100%, 100%);
                 }
             }
         }
@@ -341,12 +317,10 @@ body {
                 }
             }
             .p-multiselect-close {
-                width: 2rem;
-                height: 1.2rem;
+                @include size(2rem, 1.2rem);
                 color: $secondary-text-color;
                 .p-icon {
-                    width: 0.8rem;
-                    height: 0.8rem;
+                    @include size(0.8rem, 0.8rem);
                 }
             }
         }
@@ -358,29 +332,22 @@ body {
                 padding: 0.5rem 0.75rem;
                 color: $secondary-text-color;
                 .actor-container {
-                    display: flex;
+                    @include flex(normal, row, center);
                     gap: 0.5rem;
-                    align-items: center;
                     .img-container {
                         border-radius: 50%;
                         overflow: hidden;
-                        height: 1.6rem;
-                        width: 1.6rem;
-                        display: flex;
-                        justify-content: center;
+                        @include size(1.6rem, 1.6rem);
+                        @include flex(center);
                         .no-photo-container {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
+                            @include flex(center, row, center);
                             svg {
-                                height: 1.6rem;
-                                width: 1.6rem;
+                                @include size(1.6rem, 1.6rem);
                                 color: $secondary-text-color;
                             }
                         }
                         img {
-                            height: 2.2rem;
-                            width: 1.6rem;
+                            @include size(1.6rem, 2.2rem);
                         }
                     }
                 }
