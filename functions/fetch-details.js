@@ -11,8 +11,8 @@ const fetchMovieRuntime = async (apiKey, baseUrl, id) => {
     }
 }
 
-const fetchMovieActors = async (apiKey, baseUrl, id) => {
-    const url = `${baseUrl}${id}/credits?api_key=${apiKey}`;
+const fetchMovieActors = async (apiKey, baseUrl, id, language) => {
+    const url = `${baseUrl}${id}/credits?api_key=${apiKey}&language=${language}`;
     try {
         const response = await fetch(url);
         const jsonResponse = await response.json();
@@ -22,8 +22,8 @@ const fetchMovieActors = async (apiKey, baseUrl, id) => {
     }
 }
 
-const fetchTrailer = async (apiKey, baseUrl, id) => {
-    const url = `${baseUrl}${id}/videos?api_key=${apiKey}`;
+const fetchTrailer = async (apiKey, baseUrl, id, language) => {
+    const url = `${baseUrl}${id}/videos?api_key=${apiKey}&language=${language}`;
     try {
         const response = await fetch(url);
         const jsonResponse = await response.json();
@@ -49,9 +49,9 @@ const fetchTrailer = async (apiKey, baseUrl, id) => {
 const handler = async (event) => {
     const apiKey = process.env.API_KEY;
     const baseUrl = "https://api.themoviedb.org/3/movie/";
-    const {id} = event.queryStringParameters;
+    const {id, language} = event.queryStringParameters;
     try {
-        const response = await Promise.all([fetchMovieRuntime(apiKey, baseUrl, id), fetchMovieActors(apiKey, baseUrl, id), fetchTrailer(apiKey, baseUrl, id)]);
+        const response = await Promise.all([fetchMovieRuntime(apiKey, baseUrl, id), fetchMovieActors(apiKey, baseUrl, id, language), fetchTrailer(apiKey, baseUrl, id, language)]);
         const data = {
             runtime: response[0],
             actors: response[1],

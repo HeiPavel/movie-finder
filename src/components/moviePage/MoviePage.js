@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMovies } from "../../features/movies/moviesSlise";
+import { selectMovies, selectLanguage } from "../../features/movies/moviesSlise";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { loadMovieData, selectMovieData } from "../../features/moviePage/moviePageSlice";
 
@@ -9,12 +9,13 @@ export const MoviePage = () => {
     const {movies} = useSelector(selectMovies);
     const data = useSelector(selectMovieData);
     const {id} = useParams();
+    const language = useSelector(selectLanguage);
     const movie = movies.find(m => m.id === Number(id));
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(loadMovieData(id));
-    }, [dispatch, id]);
+        dispatch(loadMovieData({id, language}));
+    }, [dispatch, id, language]);
 
     if (!movie) {
         return (
@@ -24,10 +25,9 @@ export const MoviePage = () => {
 
     return (
         <div className="movie-page" style={{backgroundImage: `url(${movie.backdrop})`}}>
-            <p>{movie.title}</p>
-            <p>{movie.overview}</p>
-            <p>{data.runtime}</p>
-            <button onClick={() => navigate(-1)}>Back</button>
+            <div className="movie-page-content">
+                <button onClick={() => navigate(-1)}>Back</button>
+            </div>
         </div>
     );
 }

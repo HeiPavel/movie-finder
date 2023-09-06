@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchDetails } from "../../util/moviePageRequest";
 
 export const loadMovieData = createAsyncThunk('moviePage/loadMovieData',
-    async (id) => {
-        const response = await fetchDetails(id);
+    async ({id, language}) => {
+        const response = await fetchDetails(id, language);
         return response.data;
     }
 );

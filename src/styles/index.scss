@@ -362,9 +362,15 @@ body {
 
 /*Movie Page*/
 .movie-page {
-    width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    @include flex(center, row, center);
+    .movie-page-content {
+        @include size(70%, 70%);
+        border-radius: 10px;
+        background: $load-more-color;
+        backdrop-filter: blur(5px);
+    }
 }
