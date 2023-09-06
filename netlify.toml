@@ -9,3 +9,8 @@ publish = 'build/'
 directory = 'functions/'
 
 node_bundler = "esbuild"
+
+[[redirects]]
+from="/movie/*"
+to="http://localhost:8888/:splat"
+status=200

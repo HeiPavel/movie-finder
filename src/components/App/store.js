@@ -6,6 +6,7 @@ import genresReducer from '../../features/genres/genresSlice';
 import searchMovieTitleReducer from "../../features/searchMovieTitle/searchMovieTitle";
 import sidebarReducer from '../../features/sidebar/sidebarSlice';
 import contentReducer from '../../features/content/contentSlice';
+import moviePageReducer from '../../features/moviePage/moviePageSlice';
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         genres: genresReducer,
         movieTitles: searchMovieTitleReducer,
         sidebar: sidebarReducer,
-        content: contentReducer
+        content: contentReducer,
+        moviePage: moviePageReducer
     }
 });
