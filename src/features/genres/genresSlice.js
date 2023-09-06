@@ -13,7 +13,8 @@ export const genresSlice = createSlice({
     name: 'genres',
     initialState: {
         genres: [],
-        selectedGenres: []
+        selectedGenres: [],
+        allowLoading: true
     },
     reducers: {
         changeGenre: (state, action) => {
@@ -21,20 +22,25 @@ export const genresSlice = createSlice({
         },
         resetGenres: (state) => {
             state.selectedGenres = [];
+        },
+        toggleGenresLoading: (state) => {
+            state.allowLoading = true;
         }
     },
     extraReducers: (builder) => {
         builder
         .addCase(loadGenres.fulfilled, (state, action) => {
             state.genres = action.payload;
+            state.allowLoading = false;
         })
     }
 });
 
 export const selectGenres = (state) => state.genres.genres;
 export const selectSelectedGenres = (state) => state.genres.selectedGenres;
+export const selectGenresAllowLoading = (state) => state.genres.allowLoading;
 
-export const {changeGenre, resetGenres} = genresSlice.actions;
+export const {changeGenre, resetGenres, toggleGenresLoading} = genresSlice.actions;
 export const updateGenres = (payload) => {
     return dispatch => {
         dispatch(changeGenre(payload));

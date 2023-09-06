@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMovies, selectSearchParams, loadMovies, addPageAndRestSortTerm, selectLanguage } from "../../features/movies/moviesSlise";
+import { selectMovies, selectSearchParams, loadMovies, addPageAndRestSortTerm, selectLanguage, selectAllowLoading } from "../../features/movies/moviesSlise";
 import { Movie } from "../movie/Movie";
 import {Skeleton} from 'primereact/skeleton';
 import { ErrorOrEmpty } from "../errorOrEmpty/ErrorOrEmpty";
@@ -11,6 +11,7 @@ export const MovieListContainer = () => {
     const searchParams = useSelector(selectSearchParams);
     const language = useSelector(selectLanguage);
     const content = useSelector(selectContent);
+    const isLoadingAllowed = useSelector(selectAllowLoading);
     const dispatch = useDispatch();
 
     const loading = () => {
@@ -30,8 +31,8 @@ export const MovieListContainer = () => {
     }
 
     useEffect(() => {
-        dispatch(loadMovies(searchParams));
-    }, [dispatch, searchParams]);
+        if (isLoadingAllowed) dispatch(loadMovies(searchParams));
+    }, [dispatch, searchParams, isLoadingAllowed]);
 
     return (
         <div className="background-box">

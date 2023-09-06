@@ -3,7 +3,7 @@ import { fetchMovies } from "../../util/moviesRequest";
 import { resetActors, addActor } from "../searchActors/searchActorsSlice";
 import { toggleVisibility } from "../sidebar/sidebarSlice";
 import { resetSearchParameters } from "../searchParameters/searchParametersSlice";
-import { resetGenres } from "../genres/genresSlice";
+import { resetGenres, toggleGenresLoading } from "../genres/genresSlice";
 import { resetTitles } from "../searchMovieTitle/searchMovieTitle";
 
 export const loadMovies = createAsyncThunk('movies/loadMovies', 
@@ -55,7 +55,8 @@ export const moviesSlice = createSlice({
             page: 1,
         },
         movieIds: {},
-        sortTerm: ''
+        sortTerm: '',
+        allowLoading: true
     },
     reducers: {
         addPage: (state) => {
@@ -109,6 +110,9 @@ export const moviesSlice = createSlice({
                     }
                 });
             }
+        },
+        toggleAllowLoading: (state) => {
+            state.allowLoading = true;
         }
     },
     extraReducers: (builder) => {
@@ -116,6 +120,7 @@ export const moviesSlice = createSlice({
         .addCase(loadMovies.pending, (state) => {
             state.loading['isLoading'] = true;
             state.loading['isError'] = false;
+            state.allowLoading = false;
         })
         .addCase(loadMovies.fulfilled, (state, action) => {
             const {query, primary_release_year} = state.searchParams;
@@ -136,10 +141,12 @@ export const moviesSlice = createSlice({
             if (!state.loading.totalPages) state.loading.totalPages = action.payload.totalPages;
             state.loading['isLoading'] = false;
             state.loading['isError'] = false;
+            state.allowLoading = false;
         })
         .addCase(loadMovies.rejected, (state) => {
             state.loading['isLoading'] = false;
             state.loading['isError'] = true;
+            state.allowLoading = false;
         })
     }
 });
@@ -148,10 +155,12 @@ export const selectMovies = (state) => state.movies.loading;
 export const selectLanguage = (state) => state.movies.searchParams.language;
 export const selectSearchParams = (state) => state.movies.searchParams;
 export const selectSortTerm = (state) => state.movies.sortTerm;
-export const {addPage, updateSearchParams, resetMovies, changeSortTerm, resetSortTerm, sortByTerm, toggleLanguage} = moviesSlice.actions;
+export const selectAllowLoading = (state) => state.movies.allowLoading;
+export const {addPage, updateSearchParams, resetMovies, changeSortTerm, resetSortTerm, sortByTerm, toggleLanguage, toggleAllowLoading} = moviesSlice.actions;
 export const resetAndUpdate = (payload) => {
     return dispatch => {
         dispatch(resetMovies());
+        dispatch(toggleAllowLoading());
         dispatch(updateSearchParams(payload));
         dispatch(resetActors());
         dispatch(toggleVisibility());
@@ -161,6 +170,7 @@ export const resetAndUpdate = (payload) => {
 
 export const addPageAndRestSortTerm = () => {
     return dispatch => {
+        dispatch(toggleAllowLoading());
         dispatch(addPage());
         dispatch(resetSortTerm());
     } 
@@ -176,6 +186,8 @@ export const sortAndHideSidebar = () => {
 export const toggleLanguageAndReloadMovies = (payload) => {
     return dispatch => {
         dispatch(resetMovies());
+        dispatch(toggleAllowLoading());
+        dispatch(toggleGenresLoading());
         dispatch(toggleLanguage(payload));
         dispatch(resetTitles());
         dispatch(addActor([]));
