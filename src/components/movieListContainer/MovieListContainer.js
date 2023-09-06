@@ -34,18 +34,20 @@ export const MovieListContainer = () => {
     }, [dispatch, searchParams]);
 
     return (
-        <div className="movies-container">
-            {isError ? <ErrorOrEmpty
-                            message={'Sorry something went wrong, change search parameters or try later.'}
-            /> : movies.map(movie => {
-                return <Movie 
-                        movie={movie}
-                        key={movie.id}
-                    />;
-                })} {isLoading ? loading() : (!movies.length && !isError) ? <ErrorOrEmpty
-                        message={'Sorry, nothing was found with your search parameters try to change them.'}
-                /> : []}
-            {(!isLoading && !isError && movies.length && (searchParams.page < totalPages)) && loadMore()}
+        <div className="background-box">
+            <div className="movies-container">
+                {isError ? <ErrorOrEmpty
+                                message={'Sorry something went wrong, change search parameters or try later.'}
+                /> : movies.map(movie => {
+                    return <Movie 
+                            movie={movie}
+                            key={movie.id}
+                        />;
+                    })} {isLoading ? loading() : (!movies.length && !isError) ? <ErrorOrEmpty
+                            message={'Sorry, nothing was found with your search parameters try to change them.'}
+                    /> : []}
+                {(!isLoading && !isError && movies.length && (searchParams.page < totalPages)) && loadMore()}
+            </div>
         </div>
     );
 }

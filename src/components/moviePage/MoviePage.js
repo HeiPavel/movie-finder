@@ -23,7 +23,7 @@ export const MoviePage = () => {
     }
 
     return (
-        <div className="movie-page">
+        <div className="movie-page" style={{backgroundImage: `url(${movie.backdrop})`}}>
             <p>{movie.title}</p>
             <p>{movie.overview}</p>
             <p>{data.runtime}</p>

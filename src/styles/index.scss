@@ -8,7 +8,6 @@ body {
   position: relative;
   font-size: 18px;
   margin: 0;
-  background: $main-bg-color;
 }
 
 p {
@@ -29,98 +28,103 @@ p {
     border-radius: 10px;
 }
 
-.movies-container {
+.background-box {
     position: relative;
-    top: 80px;
-    margin: 0 auto;
-    padding: 15px 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 240px);
-    grid-gap: 30px;
-    justify-content: center;
-    @include size(90%, 785px);
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    .text-message {
-        margin-top: 200px;
-        padding: 0 150px;
-        grid-area: 1 / 1 / 2 / span 6;
-        font-size: 3rem;
-        color: $white-text-color;
-        text-align: center;
-    }
-    .p-skeleton {
-        @include size(240px, 360px);
-    }
-    .movie-card {
+    min-height: 100vh;
+    background: $main-bg-color;
+    .movies-container {
         position: relative;
-        @include size(240px, 360px);
-        margin: 0;
-        box-shadow: 0 0 10px 3px rgba(62, 57, 207, 0.4);
-        font-family: 'Roboto', sans-serif;
-        cursor: pointer;
-        overflow: hidden;
-        transition: 0.5s ease;
-        img {
-            @include size(100%, 100%);
-            transform: scale(1);
-            transition: 0.5s ease;
+        top: 80px;
+        margin: 0 auto;
+        padding: 15px 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 240px);
+        grid-gap: 30px;
+        justify-content: center;
+        @include size(90%, 785px);
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+        .text-message {
+            margin-top: 200px;
+            padding: 0 150px;
+            grid-area: 1 / 1 / 2 / span 6;
+            font-size: 3rem;
+            color: $white-text-color;
+            text-align: center;
         }
-        .movie-description {
-            position: absolute;
-            bottom: 0;
-            @include size(100%, 30%);
-            @include flex(space-between, column);
-            padding-bottom: 0.5rem;
-            background: $movie-desc-color;
-            .title {
-                padding: 0.3rem 0.8rem;
-                font-size: 1.1rem;
-                max-height: 3rem;
-                overflow: hidden;
-                color: $white-text-color;
+        .p-skeleton {
+            @include size(240px, 360px);
+        }
+        .movie-card {
+            position: relative;
+            @include size(240px, 360px);
+            margin: 0;
+            box-shadow: 0 0 10px 3px rgba(62, 57, 207, 0.4);
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.5s ease;
+            img {
+                @include size(100%, 100%);
+                transform: scale(1);
+                transition: 0.5s ease;
             }
-            .statistic-box {
-                @include flex(space-between, row, center);
-                padding: 0.1rem 1rem;
-                font-size: 0.8rem;
-                height: 2.1rem;
-                .vote-box {
-                    position: relative;
-                    @include flex(normal, row, center);
-                    gap: 7px;
+            .movie-description {
+                position: absolute;
+                bottom: 0;
+                @include size(100%, 30%);
+                @include flex(space-between, column);
+                padding-bottom: 0.5rem;
+                background: $movie-desc-color;
+                .title {
+                    padding: 0.3rem 0.8rem;
+                    font-size: 1.1rem;
+                    max-height: 3rem;
+                    overflow: hidden;
                     color: $white-text-color;
-                    i {
+                }
+                .statistic-box {
+                    @include flex(space-between, row, center);
+                    padding: 0.1rem 1rem;
+                    font-size: 0.8rem;
+                    height: 2.1rem;
+                    .vote-box {
                         position: relative;
-                        font-size: 0.8rem;
-                        color: $star-color;
-                        top: -0.1rem;
+                        @include flex(normal, row, center);
+                        gap: 7px;
+                        color: $white-text-color;
+                        i {
+                            position: relative;
+                            font-size: 0.8rem;
+                            color: $star-color;
+                            top: -0.1rem;
+                        }
+                    }
+                    .genres-box {
+                        width: 50%;
+                        word-spacing: 2rem;
+                        text-align: right;
+                        color: $secondary-text-color;
                     }
                 }
-                .genres-box {
-                    width: 50%;
-                    word-spacing: 2rem;
-                    text-align: right;
-                    color: $secondary-text-color;
-                }
             }
         }
-    }
-    .button-container {
-        @include size(240px, 360px);
-        @include flex(center, row, center);
-        font-size: 2rem;
-        color: $white-text-color;
-        background: $load-more-color;
-        box-shadow: 0 0 10px 3px $load-more-shadow-color;
-        cursor: pointer;
-        transition: 0.5s ease;
-    }
-    .movie-card:hover, .button-container:hover {
-        box-shadow: 0 0 10px 3px $hover-color;
-        filter: saturate(150%);
-        img {
-            transform: scale(1.05);
+        .button-container {
+            @include size(240px, 360px);
+            @include flex(center, row, center);
+            font-size: 2rem;
+            color: $white-text-color;
+            background: $load-more-color;
+            box-shadow: 0 0 10px 3px $load-more-shadow-color;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+        .movie-card:hover, .button-container:hover {
+            box-shadow: 0 0 10px 3px $hover-color;
+            filter: saturate(150%);
+            img {
+                transform: scale(1.05);
+            }
         }
     }
 }
@@ -129,6 +133,7 @@ p {
     padding: 1rem;
     position: absolute;
     top: 0.5rem;
+    z-index: 10;
     .p-button.p-button-icon-only {
         @include size(2rem, 2rem);
     }
@@ -200,12 +205,6 @@ p {
     padding-top: 3rem;
     padding-bottom: 0;
     border-top: 1px solid $secondary-text-color;
-}
-
-.movie-page {
-    width: 100%;
-    min-height: 100vh;
-    background: white;
 }
 
 /*Tooltip icon*/
@@ -354,8 +353,18 @@ body {
             }
         }
     }
+
     /*Sidebar*/
     .p-sidebar {
         background: $main-bg-color;
     }
+}
+
+/*Movie Page*/
+.movie-page {
+    width: 100%;
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
