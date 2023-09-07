@@ -16,6 +16,14 @@ export const moviePageSlice = createSlice({
         trailer: '',
         isLoading: false,
         isError: false
+    }, reducers: {
+        resetMovieInfo: (state) => {
+            state.runtime = 0;
+            state.actors = [];
+            state.trailer = '';
+            state.isLoading = false;
+            state.isError = false;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -38,5 +46,7 @@ export const moviePageSlice = createSlice({
 });
 
 export const selectMovieData = (state) => state.moviePage;
+
+export const {resetMovieInfo} = moviePageSlice.actions;
 
 export default moviePageSlice.reducer;

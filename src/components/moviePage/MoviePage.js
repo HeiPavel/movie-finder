@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectMovies, selectLanguage } from "../../features/movies/moviesSlise";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
-import { loadMovieData, selectMovieData } from "../../features/moviePage/moviePageSlice";
+import { loadMovieData, selectMovieData, resetMovieInfo } from "../../features/moviePage/moviePageSlice";
 import { roundVote } from "../../util/helper/voteRound";
 import { timeTransform } from "../../util/helper/minToHours";
 import { selectGenres } from "../../features/genres/genresSlice";
@@ -16,6 +16,11 @@ export const MoviePage = () => {
     const genres = useSelector(selectGenres);
     const movie = movies.find(m => m.id === Number(id));
     const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate('/');
+        dispatch(resetMovieInfo());
+    }
 
     useEffect(() => {
         dispatch(loadMovieData({id, language}));
@@ -53,8 +58,19 @@ export const MoviePage = () => {
                         </div>
                     </div>
                 </div>
+                <div className="trailer-box">
+                    <iframe  
+                        src={`https://www.youtube-nocookie.com/embed/${trailer}`}
+                        title="YouTube video player"  
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+                    >
+                    </iframe>
+                </div>
+                <div className="overview-box">
+                    <p>{overview}</p>
+                </div>
             </div>
-            <button onClick={() => navigate(-1)}>Back</button>
+            <button onClick={handleBack}>Back</button>
         </div>
     );
 }

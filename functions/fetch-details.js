@@ -23,12 +23,19 @@ const fetchMovieActors = async (apiKey, baseUrl, id, language) => {
 }
 
 const fetchTrailer = async (apiKey, baseUrl, id, language) => {
-    const url = `${baseUrl}${id}/videos?api_key=${apiKey}&language=${language}`;
+    const makeFetch = async (language) => {
+        const response = await fetch(`${baseUrl}${id}/videos?api_key=${apiKey}&language=${language}`);
+        const json = await response.json();
+        return json;
+    }
     try {
-        const response = await fetch(url);
-        const jsonResponse = await response.json();
+        const fetchArray = [makeFetch(language)];
+        if (language === 'uk') fetchArray.push(makeFetch('en-US'));
+        const response = await Promise.all(fetchArray);
+        const arrayOfVideos = (language === 'en-US') ? response[0].results : response[0].results.length ? response[0].results : response[1].results;
         let key = '';
-        for (const video of jsonResponse.results) {
+        for (const video of arrayOfVideos) {
+            if (video.site !== 'YouTube') continue;
             if (!key) {
                 key = video.key;
             } else {
