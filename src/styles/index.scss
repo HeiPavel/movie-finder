@@ -10,7 +10,7 @@ body {
   margin: 0;
 }
 
-p {
+p, h2 {
     padding: 0;
     margin: 0;
 }
@@ -89,16 +89,7 @@ p {
                     font-size: 0.8rem;
                     height: 2.1rem;
                     .vote-box {
-                        position: relative;
-                        @include flex(normal, row, center);
-                        gap: 7px;
-                        color: $white-text-color;
-                        i {
-                            position: relative;
-                            font-size: 0.8rem;
-                            color: $star-color;
-                            top: -0.1rem;
-                        }
+                        @include vote(0.8rem, 0.8rem, -0.1rem, $white-text-color);
                     }
                     .genres-box {
                         width: 50%;
@@ -368,9 +359,34 @@ body {
     background-size: cover;
     @include flex(center, row, center);
     .movie-page-content {
+        font-family: 'Roboto', sans-serif;
         @include size(70%, 70%);
         border-radius: 10px;
         background: $load-more-color;
         backdrop-filter: blur(5px);
+        @include flex(normal, column, center);
+        h2 {
+            font-size: 2.5rem;
+            padding: 1rem 0;
+            color: $movie-page-text-color;
+            font-weight: 400;
+        }
+        .movie-statistic-box {
+            @include flex(center, row, center);
+            gap: 20px;
+            font-size: 0.8rem;
+            color: $statistic-text-color;
+            .movie-vote-box {
+                @include vote(0.8rem, 0.8rem, -0.05rem, $statistic-text-color);
+            }
+            .extra-statistic-box {
+                @include flex(normal, row, center);
+                gap: 7px;
+                span {
+                    font-size: 1.5rem;
+                    line-height: 1;
+                }
+            }
+        }
     }
 }

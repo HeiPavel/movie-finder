@@ -2,12 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/genres/genresSlice";
 import { Link } from "react-router-dom";
+import { roundVote } from "../../util/helper/voteRound";
 
 export const Movie = ({movie}) => {
     const {title, poster, genre, vote_average, vote_count} = movie;
     const genres = useSelector(selectGenres);
     const genresToDisplay = genres.filter(el => genre.includes(el.id)).slice(0,2).map(el => el.name).join(' ');
-    const voteToDisplay = vote_average/Math.floor(vote_average) > 1 ? vote_average.toFixed(1) : vote_average;
+    const voteToDisplay = roundVote(vote_average);
 
     return (
         <Link to={`/movie/${movie.id}`}>

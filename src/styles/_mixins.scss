@@ -9,3 +9,17 @@
     width: $width;
     height: $height;
 }
+
+@mixin vote($font-size, $icon-font-size, $top, $text-color) {
+    position: relative;
+    @include flex(normal, row, center);
+    gap: 7px;
+    color: $text-color;
+    font-size: $font-size;
+    i {
+        position: relative;
+        font-size: $icon-font-size;
+        color: $star-color;
+        top: $top;
+    }
+}

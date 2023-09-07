@@ -1,0 +1,1 @@
+export const roundVote = (vote) => vote/Math.floor(vote) > 1 ? vote.toFixed(1) : vote;
