@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Vesper+Libre:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;700&display=swap');
 @import "variables";
 @import "mixins";
 
@@ -8,6 +9,7 @@ body {
   position: relative;
   font-size: 18px;
   margin: 0;
+  background: $main-bg-color;
 }
 
 p, h2 {
@@ -31,7 +33,6 @@ p, h2 {
 .background-box {
     position: relative;
     min-height: 100vh;
-    background: $main-bg-color;
     .movies-container {
         position: relative;
         top: 80px;
@@ -352,20 +353,27 @@ body {
 }
 
 /*Movie Page*/
-.movie-page {
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    @include flex(center, row, center);
+.movie-page-container {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 3rem;
+    @include flex(normal, column, center);
+    .movie-page {
+        position: absolute;
+        @include size(70%, 40vh);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
     .movie-page-content {
-        font-family: 'Roboto', sans-serif;
-        width: 55%;
-        min-height: 80%;
-        border-radius: 10px;
-        background: $load-more-color;
+        position: relative;
+        margin-top: 20vh;
+        font-family: "Source Sans Pro",Arial,sans-serif;
+        width: 80%;
+        min-height: 70vh;
+        border-radius: 15px;
+        background: $movie-desc-color;
         color: $movie-page-text-color;
-        backdrop-filter: blur(5px);
         @include flex(normal, column, center);
         h2 {
             font-size: 2.5rem;
@@ -376,9 +384,8 @@ body {
             @include flex(center, row, center);
             gap: 20px;
             font-size: 0.8rem;
-            color: $statistic-text-color;
             .movie-vote-box {
-                @include vote(0.8rem, 0.8rem, -0.05rem, $statistic-text-color);
+                @include vote(0.8rem, 0.8rem, -0.05rem, $movie-page-text-color);
             }
             .extra-statistic-box {
                 @include flex(normal, row, center);
@@ -391,17 +398,24 @@ body {
         }
         .trailer-box {
             padding: 1rem 0;
+            @include flex(normal, row, normal);
+            gap: 30px;
+            .poster-box {
+                @include size(260px, 390px);
+                img {
+                    @include size(100%, 100%);
+                }
+            }
             iframe {
                 @include size(700px, 390px);
                 border: none;
             }
         }
         .overview-box {
-            width: 80%;
+            width: 70%;
             font-size: 0.9rem;
             font-weight: 400;
             line-height: 1.3;
-            color: $statistic-text-color;
         }
     }
 }

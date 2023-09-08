@@ -32,12 +32,14 @@ export const MoviePage = () => {
         );
     }
 
-    const {title, genre, vote_average, vote_count, backdrop, overview, release_date} = movie;
+    const {title, genre, vote_average, vote_count, backdrop, poster, overview, release_date} = movie;
     const voteToDisplay = roundVote(vote_average);
     const genresToDisplay = genres.filter(gen => genre.includes(gen.id)).map(gen => gen.name).join(', ');
 
     return (
-        <div className="movie-page" style={{backgroundImage: `url(${backdrop})`}}>
+        <div className="movie-page-container">
+            <div className="movie-page" style={{backgroundImage: `url(${backdrop})`}}>
+            </div>
             <div className="movie-page-content">
                 <h2>{title}</h2>
                 <div className="movie-statistic-box">
@@ -59,6 +61,9 @@ export const MoviePage = () => {
                     </div>
                 </div>
                 <div className="trailer-box">
+                    <div className="poster-box">
+                        <img src={poster} alt="Poster"></img>
+                    </div>
                     <iframe  
                         src={`https://www.youtube-nocookie.com/embed/${trailer}`}
                         title="YouTube video player"  
@@ -69,8 +74,8 @@ export const MoviePage = () => {
                 <div className="overview-box">
                     <p>{overview}</p>
                 </div>
+                <button onClick={handleBack}>Back</button>
             </div>
-            <button onClick={handleBack}>Back</button>
         </div>
     );
 }
