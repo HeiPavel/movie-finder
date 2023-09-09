@@ -7,6 +7,7 @@ import { roundVote } from "../../util/helper/voteRound";
 import { timeTransform } from "../../util/helper/minToHours";
 import { selectGenres } from "../../features/genres/genresSlice";
 import {Button} from 'primereact/button';
+import { Actor } from "../actor/Actor";
 
 export const MoviePage = () => {
     const dispatch = useDispatch();
@@ -36,6 +37,24 @@ export const MoviePage = () => {
     const {title, genre, vote_average, vote_count, backdrop, poster, overview, release_date} = movie;
     const voteToDisplay = roundVote(vote_average);
     const genresToDisplay = genres.filter(gen => genre.includes(gen.id)).map(gen => gen.name).join(', ');
+    const actorsToDisplay = actors.map(actor => {
+        let newName = '';
+        const words = actor.name.split(' ');
+        if (words.length < 3) {
+            newName = words.join('\n');
+        } else {
+            if (words[0].length + words[1].length >= words[1].length + words[2].length) {
+                words.forEach(word => !newName ? newName += word + '\n' : newName += ' ' + word);
+            } else {
+                words.forEach((word, i) => i === 2 ? newName += '\n' + word : newName += word + ' ');
+            }
+        }
+        return {
+            name: newName,
+            id: actor.id,
+            photo: actor.photo
+        }
+    });
 
     return (
         <div className="movie-page-container">
@@ -74,6 +93,16 @@ export const MoviePage = () => {
                 </div>
                 <div className="overview-box">
                     <p>{overview}</p>
+                </div>
+                <div className="movie-actors">
+                    <p className="actors-title">Actors</p>
+                    <div className="actors-box">
+                        {actorsToDisplay.map(actor => (<Actor 
+                                                key={actor.id}
+                                                photo={actor.photo}
+                                                name={actor.name}
+                        />))}
+                    </div>
                 </div>
             </div>
             <div className="back-button-container">

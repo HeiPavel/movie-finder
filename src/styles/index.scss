@@ -370,7 +370,7 @@ body {
     }
     .movie-page-content {
         position: relative;
-        padding-bottom: 3rem;
+        padding-bottom: 4rem;
         @include flex(normal, column, center);
         margin-top: 20vh;
         font-family: "Source Sans Pro",Arial,sans-serif;
@@ -417,11 +417,54 @@ body {
             }
         }
         .overview-box {
+            padding-top: 1rem;
             width: 70%;
             font-size: 0.9rem;
             font-weight: 400;
             line-height: 1.4;
             color: $statistic-text-color;
+        }
+        .movie-actors {
+            padding-top: 3rem;
+            width: 50%;
+            color: $statistic-text-color;
+            .actors-title {
+                font-size: 1.2rem;
+                padding: 0.5rem 0;
+                margin-left: 10px;
+            }
+            .actors-box {
+                @include flex(normal, row, center);
+                overflow-x: scroll;
+                .actor-box {
+                    padding: 10px 0;
+                    @include flex(center, column, center);
+                    flex-shrink: 0;
+                    width: 110px;
+                    .photo-box {
+                        border-radius: 50%;
+                        overflow: hidden;
+                        @include size(75px, 75px);
+                        @include flex(center);
+                        img {
+                            @include size(75px, 112px);
+                        }
+                    }
+                    .no-photo-container {
+                        @include flex(center, row, center);
+                        svg {
+                            @include size(75px, 75px);
+                            color: $statistic-text-color;
+                        }
+                    }
+                    .actor-name {
+                        padding-top: 10px;
+                        font-size: 0.8rem;
+                        text-align: center;
+                        white-space: pre-line;
+                    }
+                }
+            }
         }
     }
     .back-button-container {
