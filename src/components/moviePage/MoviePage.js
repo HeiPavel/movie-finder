@@ -6,6 +6,7 @@ import { loadMovieData, selectMovieData, resetMovieInfo } from "../../features/m
 import { roundVote } from "../../util/helper/voteRound";
 import { timeTransform } from "../../util/helper/minToHours";
 import { selectGenres } from "../../features/genres/genresSlice";
+import {Button} from 'primereact/button';
 
 export const MoviePage = () => {
     const dispatch = useDispatch();
@@ -74,7 +75,9 @@ export const MoviePage = () => {
                 <div className="overview-box">
                     <p>{overview}</p>
                 </div>
-                <button onClick={handleBack}>Back</button>
+            </div>
+            <div className="back-button-container">
+                <Button icon="pi pi-arrow-left" label="Back" onClick={handleBack} />
             </div>
         </div>
     );

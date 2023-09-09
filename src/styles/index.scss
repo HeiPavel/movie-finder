@@ -358,6 +358,9 @@ body {
     min-height: 100vh;
     padding-bottom: 3rem;
     @include flex(normal, column, center);
+    .movie-page, .movie-page-content, .poster-box, iframe {
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
+    }
     .movie-page {
         position: absolute;
         @include size(70%, 40vh);
@@ -367,25 +370,27 @@ body {
     }
     .movie-page-content {
         position: relative;
+        padding-bottom: 3rem;
+        @include flex(normal, column, center);
         margin-top: 20vh;
         font-family: "Source Sans Pro",Arial,sans-serif;
         width: 80%;
         min-height: 70vh;
         border-radius: 15px;
         background: $movie-desc-color;
-        color: $movie-page-text-color;
-        @include flex(normal, column, center);
         h2 {
             font-size: 2.5rem;
             padding: 1rem 0;
             font-weight: 400;
+            color: $white-text-color;
         }
         .movie-statistic-box {
             @include flex(center, row, center);
             gap: 20px;
             font-size: 0.8rem;
+            color: $statistic-text-color;
             .movie-vote-box {
-                @include vote(0.8rem, 0.8rem, -0.05rem, $movie-page-text-color);
+                @include vote(0.8rem, 0.8rem, -0.05rem, $statistic-text-color);
             }
             .extra-statistic-box {
                 @include flex(normal, row, center);
@@ -397,7 +402,7 @@ body {
             }
         }
         .trailer-box {
-            padding: 1rem 0;
+            padding: 2rem 0;
             @include flex(normal, row, normal);
             gap: 30px;
             .poster-box {
@@ -415,7 +420,19 @@ body {
             width: 70%;
             font-size: 0.9rem;
             font-weight: 400;
-            line-height: 1.3;
+            line-height: 1.4;
+            color: $statistic-text-color;
+        }
+    }
+    .back-button-container {
+        position: absolute;
+        top: 2rem;
+        left: 1rem;
+        .p-button {
+            padding: 0.4rem 0.6rem;
+            .p-button-icon {
+                font-size: 0.8rem;
+            }
         }
     }
 }
