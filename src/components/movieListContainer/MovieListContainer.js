@@ -38,14 +38,14 @@ export const MovieListContainer = () => {
         <div className="background-box">
             <div className="movies-container">
                 {isError ? <ErrorOrEmpty
-                                message={'Sorry something went wrong, change search parameters or try later.'}
+                                message={content[language].movieContainerError}
                 /> : movies.map(movie => {
                     return <Movie 
                             movie={movie}
                             key={movie.id}
                         />;
                     })} {isLoading ? loading() : (!movies.length && !isError && !isLoadingAllowed) ? <ErrorOrEmpty
-                            message={'Sorry, nothing was found with your search parameters try to change them.'}
+                            message={content[language].noMoviesFoundMessage}
                     /> : []}
                 {(!isLoading && !isError && movies.length && (searchParams.page < totalPages)) ? loadMore() : []}
             </div>

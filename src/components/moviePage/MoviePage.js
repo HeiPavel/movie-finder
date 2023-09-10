@@ -10,11 +10,12 @@ import {Button} from 'primereact/button';
 import { Actor } from "../actor/Actor";
 import { selectContent } from "../../features/content/contentSlice";
 import { MoviePageSkeleton } from "../moviePageSkeleton/MoviePageSkeleton";
+import {ErrorOrEmpty} from "../errorOrEmpty/ErrorOrEmpty";
 
 export const MoviePage = () => {
     const dispatch = useDispatch();
     const {movies} = useSelector(selectMovies);
-    const {runtime, actors, trailer, isLoading} = useSelector(selectMovieData);
+    const {runtime, actors, trailer, isLoading, isError} = useSelector(selectMovieData);
     const {id} = useParams();
     const language = useSelector(selectLanguage);
     const content = useSelector(selectContent);
@@ -59,16 +60,21 @@ export const MoviePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="trailer-box">
+                <div className="media-box">
                     <div className="poster-box">
                         <img src={poster} alt="Poster"></img>
                     </div>
-                    <iframe  
-                        src={`https://www.youtube-nocookie.com/embed/${trailer}`}
-                        title="YouTube video player"  
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
-                    >
-                    </iframe>
+                    <div className="trailer-box">
+                        {isError ? <ErrorOrEmpty message={content[language].moviePageError} /> : 
+                            !trailer ? <ErrorOrEmpty message={content[language].noTrailerMessage} /> : 
+                            <iframe  
+                                src={`https://www.youtube-nocookie.com/embed/${trailer}`}
+                                title="YouTube video player"  
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+                            >
+                            </iframe>
+                        }
+                    </div>
                 </div>
                 <div className="overview-box">
                     <p>{overview}</p>
@@ -76,7 +82,8 @@ export const MoviePage = () => {
                 <div className="movie-actors">
                     <p className="actors-title">{content[language].actors}</p>
                     <div className="actors-box">
-                        {actorsToDisplay.map(actor => (<Actor 
+                        {isError ? <ErrorOrEmpty message={content[language].moviePageError} /> :
+                         actorsToDisplay.map(actor => (<Actor 
                                                 key={actor.id}
                                                 photo={actor.photo}
                                                 name={actor.name}

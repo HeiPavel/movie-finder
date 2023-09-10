@@ -358,7 +358,7 @@ body {
     min-height: 100vh;
     padding-bottom: 3rem;
     @include flex(normal, column, center);
-    .movie-page, .movie-page-content, .poster-box, iframe {
+    .movie-page, .movie-page-content, .poster-box, .trailer-box {
         box-shadow: 0 0 10px 5px $movie-page-shadow-color;
     }
     .movie-page {
@@ -401,7 +401,7 @@ body {
                 }
             }
         }
-        .trailer-box {
+        .media-box {
             padding: 2rem 0;
             @include flex(normal, row, normal);
             gap: 30px;
@@ -411,9 +411,18 @@ body {
                     @include size(100%, 100%);
                 }
             }
-            iframe {
+            .trailer-box {
                 @include size(700px, 390px);
-                border: none;
+                @include flex(center, row, center);
+                /*Error or no trailer message*/
+                .text-message {
+                    font-size: 1.5rem;
+                    color: $statistic-text-color;
+                }
+                iframe {
+                    border: none;
+                    @include size(100%, 100%);
+                }
             }
         }
         .overview-box {
@@ -436,6 +445,12 @@ body {
             .actors-box {
                 @include flex(normal, row, center);
                 overflow-x: scroll;
+                /*Error message*/
+                .text-message {
+                    width: 100%;
+                    font-size: 1.2rem;
+                    text-align: center;
+                }
                 .actor-box {
                     padding: 10px 0;
                     @include flex(center, column, center);

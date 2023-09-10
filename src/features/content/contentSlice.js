@@ -30,7 +30,11 @@ export const contentSlice = createSlice({
                     hour: 'h',
                     minute: 'm'
                 },
-                actors: 'Actors'
+                actors: 'Actors',
+                noMoviesFoundMessage: 'Sorry, nothing was found with your search parameters try to change them.',
+                movieContainerError: 'Sorry, something went wrong. Change the search parameters or try later.',
+                noTrailerMessage: 'Sorry, the video for this movie is currently not available.',
+                moviePageError: 'Sorry, something went wrong. Try again later.'
             },
             'uk': {
                 searchText: "Відфільтруйте пошук за назвою фільму, іменем актора, жанром або роком випуску, звужуючи вибір, щоб знайти саме те, що ви шукаєте",
@@ -58,7 +62,11 @@ export const contentSlice = createSlice({
                     hour: 'г',
                     minute: 'хв'
                 },
-                actors: 'Актори'
+                actors: 'Актори',
+                noMoviesFoundMessage: 'Вибачте, з вашими параметрами пошуку нічого не знайдено, спробуйте змінити їх.',
+                movieContainerError: 'Вибачте, щось пішло не так. Змініть параметри пошуку або спробуйте пізніше.',
+                noTrailerMessage: 'На жаль, відео для цього фільму наразі недоступне.',
+                moviePageError: 'Вибачте, щось пішло не так. Спробуйте ще раз пізніше.'
             }
         }
     }
