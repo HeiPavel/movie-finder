@@ -9,11 +9,12 @@ import { selectGenres } from "../../features/genres/genresSlice";
 import {Button} from 'primereact/button';
 import { Actor } from "../actor/Actor";
 import { selectContent } from "../../features/content/contentSlice";
+import { MoviePageSkeleton } from "../moviePageSkeleton/MoviePageSkeleton";
 
 export const MoviePage = () => {
     const dispatch = useDispatch();
     const {movies} = useSelector(selectMovies);
-    const {runtime, actors, trailer} = useSelector(selectMovieData);
+    const {runtime, actors, trailer, isLoading} = useSelector(selectMovieData);
     const {id} = useParams();
     const language = useSelector(selectLanguage);
     const content = useSelector(selectContent);
@@ -36,33 +37,9 @@ export const MoviePage = () => {
         );
     }
 
-    const {title, genre, vote_average, vote_count, backdrop, poster, overview, release_date} = movie;
-    const voteToDisplay = roundVote(vote_average);
-    const genresToDisplay = genres.filter(gen => genre.includes(gen.id)).map(gen => gen.name).join(', ');
-    const actorsToDisplay = actors.map(actor => {
-        let newName = '';
-        const words = actor.name.split(' ');
-        if (words.length < 3) {
-            newName = words.join('\n');
-        } else {
-            if (words[0].length + words[1].length >= words[1].length + words[2].length) {
-                words.forEach(word => !newName ? newName += word + '\n' : newName += ' ' + word);
-            } else {
-                words.forEach((word, i) => i === 2 ? newName += '\n' + word : newName += word + ' ');
-            }
-        }
-        return {
-            name: newName,
-            id: actor.id,
-            photo: actor.photo
-        }
-    });
-
-    return (
-        <div className="movie-page-container">
-            <div className="movie-page" style={{backgroundImage: `url(${backdrop})`}}>
-            </div>
-            <div className="movie-page-content">
+    const loadedMovieContent = () => {
+        return (
+            <>
                 <h2>{title}</h2>
                 <div className="movie-statistic-box">
                     <div className="movie-vote-box">
@@ -106,6 +83,38 @@ export const MoviePage = () => {
                         />))}
                     </div>
                 </div>
+            </>
+        );
+    }
+
+    const {title, genre, vote_average, vote_count, backdrop, poster, overview, release_date} = movie;
+    const voteToDisplay = roundVote(vote_average);
+    const genresToDisplay = genres.filter(gen => genre.includes(gen.id)).map(gen => gen.name).join(', ');
+    const actorsToDisplay = actors.map(actor => {
+        let newName = '';
+        const words = actor.name.split(' ');
+        if (words.length < 3) {
+            newName = words.join('\n');
+        } else {
+            if (words[0].length + words[1].length >= words[1].length + words[2].length) {
+                words.forEach(word => !newName ? newName += word + '\n' : newName += ' ' + word);
+            } else {
+                words.forEach((word, i) => i === 2 ? newName += '\n' + word : newName += word + ' ');
+            }
+        }
+        return {
+            name: newName,
+            id: actor.id,
+            photo: actor.photo
+        }
+    });
+
+    return (
+        <div className="movie-page-container">
+            <div className="movie-page" style={{backgroundImage: `url(${backdrop})`}}>
+            </div>
+            <div className="movie-page-content">
+                {isLoading ? <MoviePageSkeleton/> : loadedMovieContent()}
             </div>
             <div className="back-button-container">
                 <Button icon="pi pi-arrow-left" label={content[language].backButton} onClick={handleBack} />

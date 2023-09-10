@@ -466,6 +466,58 @@ body {
                 }
             }
         }
+        /*Movie page skeleton*/
+        .title-skeleton {
+            @include size(35%, 2.5rem);
+            margin-top: 2rem;
+        }
+        .statistic-skeleton {
+            margin-top: 1.5rem;
+            @include size(25%, 1.5rem);
+        }
+        .media-box-skeleton {
+            margin: 2rem 0;
+            @include flex(normal, row, normal);
+            gap: 30px;
+            .poster-skeleton {
+                @include size(260px, 390px);
+            }
+            .trailer-skeleton {
+                @include size(700px, 390px);
+            }
+        }
+        .overview-skeleton {
+            margin: 1rem;
+            @include size(70%, 3rem);
+        }
+        .actors-label-skeleton-box {
+            margin-top: 1rem;
+            width: 50%;
+            @include flex(normal, row, center);
+            .actors-label-skeleton {
+                margin: 0 10px;
+                @include size(100px, 1.2rem);
+            }
+        }
+        .actors-box-skeleton {
+            margin-top: 1rem;
+            width: 50%;
+            @include flex(normal, row, center);
+            overflow-x: scroll;
+            .actor-skeleton {
+                padding: 10px 0;
+                @include flex(center, column, center);
+                flex-shrink: 0;
+                width: 110px;
+                .actor-skeleton-photo {
+                    @include size(75px, 75px);
+                }
+                .actor-skeleton-name {
+                    margin-top: 10px;
+                    @include size(95px, 2rem);
+                }
+            }
+        }
     }
     .back-button-container {
         position: absolute;
