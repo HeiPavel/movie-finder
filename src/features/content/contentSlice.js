@@ -24,7 +24,13 @@ export const contentSlice = createSlice({
                     {name: 'Year descending', term: 'Year descending'}
                 ],
                 sortButtonText: "Sort",
-                loadMore: "Load more..."
+                loadMore: "Load more...",
+                backButton: 'Back',
+                time: {
+                    hour: 'h',
+                    minute: 'm'
+                },
+                actors: 'Actors'
             },
             'uk': {
                 searchText: "Відфільтруйте пошук за назвою фільму, іменем актора, жанром або роком випуску, звужуючи вибір, щоб знайти саме те, що ви шукаєте",
@@ -46,7 +52,13 @@ export const contentSlice = createSlice({
                     {name: 'Рік за спаданням', term: 'Year descending'}
                 ],
                 sortButtonText: "Сортувати",
-                loadMore: "Додати ще..."
+                loadMore: "Додати ще...",
+                backButton: 'Назад',
+                time: {
+                    hour: 'г',
+                    minute: 'хв'
+                },
+                actors: 'Актори'
             }
         }
     }

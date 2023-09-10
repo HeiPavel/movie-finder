@@ -8,6 +8,7 @@ import { timeTransform } from "../../util/helper/minToHours";
 import { selectGenres } from "../../features/genres/genresSlice";
 import {Button} from 'primereact/button';
 import { Actor } from "../actor/Actor";
+import { selectContent } from "../../features/content/contentSlice";
 
 export const MoviePage = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const MoviePage = () => {
     const {runtime, actors, trailer} = useSelector(selectMovieData);
     const {id} = useParams();
     const language = useSelector(selectLanguage);
+    const content = useSelector(selectContent);
     const genres = useSelector(selectGenres);
     const movie = movies.find(m => m.id === Number(id));
     const navigate = useNavigate();
@@ -68,7 +70,7 @@ export const MoviePage = () => {
                     </div>
                     <div className="extra-statistic-box">
                         <div className="duration-box">
-                            <p>{timeTransform(runtime, {hour: 'h', minute: 'm'})}</p>
+                            <p>{timeTransform(runtime, content[language].time)}</p>
                         </div>
                         <span>·</span>
                         <div className="genres-box">
@@ -95,7 +97,7 @@ export const MoviePage = () => {
                     <p>{overview}</p>
                 </div>
                 <div className="movie-actors">
-                    <p className="actors-title">Actors</p>
+                    <p className="actors-title">{content[language].actors}</p>
                     <div className="actors-box">
                         {actorsToDisplay.map(actor => (<Actor 
                                                 key={actor.id}
@@ -106,7 +108,7 @@ export const MoviePage = () => {
                 </div>
             </div>
             <div className="back-button-container">
-                <Button icon="pi pi-arrow-left" label="Back" onClick={handleBack} />
+                <Button icon="pi pi-arrow-left" label={content[language].backButton} onClick={handleBack} />
             </div>
         </div>
     );

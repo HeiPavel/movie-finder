@@ -359,7 +359,7 @@ body {
     padding-bottom: 3rem;
     @include flex(normal, column, center);
     .movie-page, .movie-page-content, .poster-box, iframe {
-        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 10px 5px $movie-page-shadow-color;
     }
     .movie-page {
         position: absolute;
