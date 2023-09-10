@@ -44,10 +44,10 @@ export const MovieListContainer = () => {
                             movie={movie}
                             key={movie.id}
                         />;
-                    })} {isLoading ? loading() : (!movies.length && !isError) ? <ErrorOrEmpty
+                    })} {isLoading ? loading() : (!movies.length && !isError && !isLoadingAllowed) ? <ErrorOrEmpty
                             message={'Sorry, nothing was found with your search parameters try to change them.'}
                     /> : []}
-                {(!isLoading && !isError && movies.length && (searchParams.page < totalPages)) && loadMore()}
+                {(!isLoading && !isError && movies.length && (searchParams.page < totalPages)) ? loadMore() : []}
             </div>
         </div>
     );
