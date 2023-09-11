@@ -546,3 +546,62 @@ body {
         }
     }
 }
+
+/*Media query*/
+@media only screen and (max-width: 420px) {
+    ::-webkit-scrollbar {
+        width: 0.1rem;
+    }
+    .background-box {
+        .movies-container {
+            a {
+                text-decoration: none;
+                @include flex(center, row, normal);
+            }
+            top: 60px;
+            padding-top: 40px;
+            grid-template-columns: repeat(auto-fill, 100%);
+            gap: 50px;
+            justify-content: center;
+            @include size(90%, 100%);
+            .movie-card {
+                @include size(90%, 120px);
+                @include flex(flex-end, row, center);
+                overflow: visible;
+                background: $movie-desc-color;
+                border-radius: 3px;
+                img {
+                    position: absolute;
+                    left: 5px;
+                    bottom: 5px;
+                    z-index: 10;
+                    @include size(30%, auto);
+                }
+                .movie-description {
+                    position: relative;
+                    bottom: auto;
+                    @include size(65%, 100%);
+                    .title {
+                        padding: 0.3rem 0;
+                        font-size: 1rem;
+                        max-height: 2.7rem;
+                    }
+                    .statistic-box {
+                        padding: 0.1rem 0.3rem 0.1rem 0;
+                        .vote-box {
+                            @include vote(0.7rem, 0.7rem, 0, $white-text-color);
+                        }
+                        .genres-box {
+                            font-size: 0.7rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .sidebar-button-container {
+        padding: 0;
+        top: 0.7rem;
+        left: 0.7rem;
+    }
+}
