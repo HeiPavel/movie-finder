@@ -12,5 +12,5 @@ node_bundler = "esbuild"
 
 [[redirects]]
 from="/movie/*"
-to="http://localhost:8888/:splat"
+to="http://moodmovie.netlify.app/:splat"
 status=200
