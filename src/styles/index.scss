@@ -23,7 +23,7 @@ p, h2 {
 
 ::-webkit-scrollbar:horizontal{
     height: 0.7rem;
-  }
+}
 
 ::-webkit-scrollbar-thumb {
     background: $prime-purple-color;
@@ -43,13 +43,13 @@ p, h2 {
         padding: 15px 0;
         display: grid;
         grid-template-columns: repeat(auto-fill, 240px);
-        grid-gap: 30px;
+        gap: 30px;
         justify-content: center;
         @include size(90%, 785px);
-        overflow-y: scroll;
+        overflow: hidden scroll;
         scroll-behavior: smooth;
         .text-message {
-            margin-top: 200px;
+            align-self: center;
             padding: 0 150px;
             grid-area: 1 / 1 / 2 / span 6;
             font-size: 3rem;
@@ -97,7 +97,7 @@ p, h2 {
                     }
                     .genres-box {
                         width: 50%;
-                        word-spacing: 2rem;
+                        word-spacing: 3rem;
                         text-align: right;
                         color: $secondary-text-color;
                     }
@@ -551,22 +551,46 @@ body {
 }
 
 /*Media query*/
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 1024px) {
+    .background-box {
+        .movies-container {
+            top: 60px;
+            gap: 30px 40px;
+            .text-message {
+                padding: 0 30px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
     ::-webkit-scrollbar {
-        width: 0.1rem;
+        width: 0.2rem;
+    }
+    
+    ::-webkit-scrollbar:horizontal{
+        height: 0.2rem;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        border-radius: 2px;
     }
     .background-box {
         .movies-container {
             a {
                 @include flex(center, row, normal);
             }
-            top: 60px;
-            padding: 40px 0;
+            .text-message {
+                grid-area: auto;
+                font-size: 2rem;
+            }
+            padding: 50px 0;
             grid-template-columns: repeat(auto-fill, 100%);
-            gap: 55px;
-            @include size(90%, 100%);
+            gap: 60px;
+            width: 85%;
+            height: 100vh;
             .movie-card {
-                @include size(90%, 120px);
+                @include size(90%, 130px);
                 @include flex(flex-end, row, center);
                 overflow: visible;
                 background: $movie-desc-color;
@@ -582,13 +606,14 @@ body {
                     position: relative;
                     bottom: auto;
                     @include size(65%, 100%);
+                    padding: 0.5rem 0;
                     .title {
                         padding: 0.3rem 0.2rem;
                         font-size: 1rem;
                         max-height: 2.7rem;
                     }
                     .statistic-box {
-                        padding: 0.1rem 0.3rem 0.1rem 0;
+                        padding: 0.1rem 0.5rem 0.1rem 0;
                         .vote-box {
                             @include vote(0.7rem, 0.7rem, 0, $white-text-color);
                         }
@@ -599,7 +624,7 @@ body {
                 }
             }
             .button-container, .p-skeleton {
-                @include size(90%, 120px);
+                @include size(90%, 130px);
                 justify-self: center;
                 font-size: 1.7rem;
             }
@@ -612,9 +637,26 @@ body {
     }
 }
 
+@media only screen and (max-width: 440px) {
+    .background-box {
+        .movies-container {
+            width: 90%;
+            .movie-card {
+                .movie-description {
+                    padding: 0 0 0.5rem 0;
+                }
+            }
+            .movie-card, .button-container, .p-skeleton  {
+                height: 120px;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 360px) {
     .background-box {
         .movies-container {
+            padding: 40px 0;
             width: 95%;
             gap: 50px;
             .movie-card, .button-container, .p-skeleton {
