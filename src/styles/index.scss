@@ -128,7 +128,7 @@ p, h2 {
     padding: 1rem;
     position: absolute;
     top: 0.5rem;
-    z-index: 10;
+    z-index: 15;
     .p-button.p-button-icon-only {
         @include size(2rem, 2rem);
     }
@@ -579,18 +579,20 @@ body {
         .movies-container {
             a {
                 @include flex(center, row, normal);
+                width: 80%;
+                justify-self: center;
             }
             .text-message {
                 grid-area: auto;
                 font-size: 2rem;
             }
-            padding: 50px 0;
+            padding: 110px 0 50px 0;
             grid-template-columns: repeat(auto-fill, 100%);
-            gap: 60px;
-            width: 85%;
-            height: 100vh;
+            gap: 70px;
+            @include size(100%, 100vh);
+            top: 0;
             .movie-card {
-                @include size(90%, 130px);
+                @include size(100%, 130px);
                 @include flex(flex-end, row, center);
                 overflow: visible;
                 background: $movie-desc-color;
@@ -624,27 +626,33 @@ body {
                 }
             }
             .button-container, .p-skeleton {
-                @include size(90%, 130px);
+                @include size(80%, 130px);
                 justify-self: center;
                 font-size: 1.7rem;
             }
         }
     }
     .sidebar-button-container {
-        padding: 0;
-        top: 0.7rem;
-        left: 0.7rem;
+        padding: 0.7rem 0 0.3rem 0.7rem;
+        top: 0;
+        width: 100%;
+        background: $main-bg-color;
     }
 }
 
 @media only screen and (max-width: 440px) {
     .background-box {
         .movies-container {
-            width: 90%;
+            a {
+                width: 85%;
+            }
             .movie-card {
                 .movie-description {
                     padding: 0 0 0.5rem 0;
                 }
+            }
+            .button-container {
+                width: 85%;
             }
             .movie-card, .button-container, .p-skeleton  {
                 height: 120px;
@@ -656,8 +664,6 @@ body {
 @media only screen and (max-width: 360px) {
     .background-box {
         .movies-container {
-            padding: 40px 0;
-            width: 95%;
             gap: 50px;
             .movie-card, .button-container, .p-skeleton {
                 height: 110px;
