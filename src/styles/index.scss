@@ -659,6 +659,10 @@ body {
             }
         }
     }
+
+    .sort-container {
+        padding-bottom: 2rem;
+    }
 }
 
 @media only screen and (max-width: 360px) {
@@ -667,6 +671,24 @@ body {
             gap: 50px;
             .movie-card, .button-container, .p-skeleton {
                 height: 110px;
+            }
+        }
+    }
+
+    .search-container {
+        p {
+            padding-left: 10px;
+        }
+        .form-container {
+            padding: 30px 9px;
+        }
+    }
+
+    body {
+        .p-sidebar-left .p-sidebar {
+            width: 300px;
+            .p-sidebar-content {
+                padding: 0.75rem;
             }
         }
     }
