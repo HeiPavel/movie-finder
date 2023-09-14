@@ -648,7 +648,32 @@ body {
     }
 
     .actors-multiselect-overlay {
-        margin-left: 1rem;
+        left: 10% !important;
+    }
+
+    .search-container {
+        margin: 0 auto;
+        width: 80%;
+        .form-container {
+            padding: 30px 0;
+            .multiselect-box {
+                .select-container {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    body {
+        .p-sidebar-left .p-sidebar {
+            .p-sidebar-content {
+                padding: 1.25rem 0;
+            }
+        }
+    }
+
+    .language-select {
+        left: 7%;
     }
 }
 
@@ -687,20 +712,11 @@ body {
         }
     }
 
-    .search-container {
-        p {
-            padding-left: 10px;
-        }
-        .form-container {
-            padding: 30px 9px;
-        }
-    }
-
     body {
         .p-sidebar-left .p-sidebar {
             width: 300px;
             .p-sidebar-content {
-                padding: 0.75rem;
+                padding: 0.75rem 0;
             }
         }
     }
