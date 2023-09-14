@@ -32,6 +32,8 @@ export const MovieListContainer = () => {
 
     useEffect(() => {
         if (isLoadingAllowed) dispatch(loadMovies(searchParams));
+        const moviesContainer = document.getElementsByClassName('movies-container');
+        if (searchParams.page === 1) moviesContainer[0].scroll({top: 0});
     }, [dispatch, searchParams, isLoadingAllowed]);
 
     return (
