@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectMovies, selectLanguage } from "../../features/movies/moviesSlise";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { loadMovieData, selectMovieData, resetMovieInfo } from "../../features/moviePage/moviePageSlice";
 import { roundVote } from "../../util/helper/voteRound";
 import { timeTransform } from "../../util/helper/minToHours";
@@ -22,6 +22,27 @@ export const MoviePage = () => {
     const genres = useSelector(selectGenres);
     const movie = movies.find(m => m.id === Number(id));
     const navigate = useNavigate();
+    const {title, genre, vote_average, vote_count, backdrop, poster, overview, release_date} = movie;
+    const voteToDisplay = roundVote(vote_average);
+    const genresToDisplay = genres.filter(gen => genre.includes(gen.id)).map(gen => gen.name).join(', ');
+    const actorsToDisplay = actors.map(actor => {
+        let newName = '';
+        const words = actor.name.split(' ');
+        if (words.length < 3) {
+            newName = words.join('\n');
+        } else {
+            if (words[0].length + words[1].length >= words[1].length + words[2].length) {
+                words.forEach(word => !newName ? newName += word + '\n' : newName += ' ' + word);
+            } else {
+                words.forEach((word, i) => i === 2 ? newName += '\n' + word : newName += word + ' ');
+            }
+        }
+        return {
+            name: newName,
+            id: actor.id,
+            photo: actor.photo
+        }
+    });
 
     const handleBack = () => {
         navigate('/');
@@ -31,12 +52,6 @@ export const MoviePage = () => {
     useEffect(() => {
         dispatch(loadMovieData({id, language}));
     }, [dispatch, id, language]);
-
-    if (!movie) {
-        return (
-            <Navigate to="/" />
-        );
-    }
 
     const loadedMovieContent = () => {
         return (
@@ -93,28 +108,6 @@ export const MoviePage = () => {
             </>
         );
     }
-
-    const {title, genre, vote_average, vote_count, backdrop, poster, overview, release_date} = movie;
-    const voteToDisplay = roundVote(vote_average);
-    const genresToDisplay = genres.filter(gen => genre.includes(gen.id)).map(gen => gen.name).join(', ');
-    const actorsToDisplay = actors.map(actor => {
-        let newName = '';
-        const words = actor.name.split(' ');
-        if (words.length < 3) {
-            newName = words.join('\n');
-        } else {
-            if (words[0].length + words[1].length >= words[1].length + words[2].length) {
-                words.forEach(word => !newName ? newName += word + '\n' : newName += ' ' + word);
-            } else {
-                words.forEach((word, i) => i === 2 ? newName += '\n' + word : newName += word + ' ');
-            }
-        }
-        return {
-            name: newName,
-            id: actor.id,
-            photo: actor.photo
-        }
-    });
 
     return (
         <div className="movie-page-container">

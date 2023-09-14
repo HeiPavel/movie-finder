@@ -161,10 +161,17 @@ p, h2 {
                 font-size: 0.9rem;
             }
         }
+        .dropdown {
+            align-items: center;
+        }
         .multiselect, .dropdown {
             font-size: 0.8rem;
             @include size(100%, 40px);
             background: $movie-desc-color;
+            .p-multiselect-label-container {
+                display: flex;
+                align-items: center;
+            }
             input[type=text], .p-multiselect-label, .p-dropdown-label {
                 color: $secondary-text-color;
             }
@@ -632,11 +639,16 @@ body {
             }
         }
     }
+
     .sidebar-button-container {
         padding: 0.7rem 0 0.3rem 0.7rem;
         top: 0;
         width: 100%;
         background: $main-bg-color;
+    }
+
+    .actors-multiselect-overlay {
+        margin-left: 1rem;
     }
 }
 

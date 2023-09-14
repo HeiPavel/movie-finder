@@ -65,7 +65,7 @@ export const SearchActors = () => {
                     placeholder={content[language].actorSelectPlaceholder}
                     filterPlaceholder={content[language].actorSearchPlaceholder}
                     className="multiselect"
-                    panelClassName="multiselect-overlay"
+                    panelClassName="multiselect-overlay actors-multiselect-overlay"
                     showSelectAll={false}
                     maxSelectedLabels={3}
                     showClear
