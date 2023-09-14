@@ -9,8 +9,3 @@ publish = 'build/'
 directory = 'functions/'
 
 node_bundler = "esbuild"
-
-[[redirects]]
-from="/movie/*"
-to="http://wishmovie.netlify.app/:splat"
-status=200
