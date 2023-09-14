@@ -12,5 +12,5 @@ node_bundler = "esbuild"
 
 [[redirects]]
 from="/movie/*"
-to="http://wishmovie.netlify.app/:splat"
+to="https://wishmovie.netlify.app/:splat"
 status=200
