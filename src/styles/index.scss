@@ -45,7 +45,7 @@ p, h2 {
         grid-template-columns: repeat(auto-fill, 240px);
         gap: 30px;
         justify-content: center;
-        @include size(90%, 785px);
+        @include size(90%, 83vh);
         overflow: hidden scroll;
         scroll-behavior: smooth;
         .text-message {
@@ -390,6 +390,7 @@ body {
         background: $movie-desc-color;
         h2 {
             font-size: 2.5rem;
+            text-align: center;
             padding: 1rem 0;
             font-weight: 400;
             color: $white-text-color;
@@ -504,14 +505,16 @@ body {
             @include size(25%, 1.5rem);
         }
         .media-box-skeleton {
+            width: 65%;
             margin: 2rem 0;
-            @include flex(normal, row, normal);
-            gap: 30px;
+            @include flex(space-between, row, normal);
             .poster-skeleton {
-                @include size(260px, 390px);
+                width: 30%;
+                aspect-ratio: 2/3;
             }
             .trailer-skeleton {
-                @include size(700px, 390px);
+                width: 67%;
+                aspect-ratio: 1.8;
             }
         }
         .overview-skeleton {
@@ -566,6 +569,7 @@ body {
         .movies-container {
             top: 60px;
             gap: 30px 40px;
+            height: 90vh;
             .text-message {
                 padding: 0 30px;
             }
@@ -576,6 +580,9 @@ body {
         .movie-page-content {
             width: 90%;
             margin-top: 15vh;
+            h2 {
+                font-size: 2rem;
+            }
             .media-box {
                 width: 90%;
             }
@@ -584,6 +591,18 @@ body {
             }
             .movie-actors {
                 width: 70%;
+            }
+            /*Skeleton*/
+            .title-skeleton, .actors-label-skeleton-box, .actors-box-skeleton {
+                width: 70%;
+            }
+            .statistic-skeleton {
+                width: 60%;
+            }
+            .media-box-skeleton {
+                width: 90%;
+            }.overview-skeleton {
+                width: 80%;
             }
         }
     }
