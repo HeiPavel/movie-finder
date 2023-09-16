@@ -711,14 +711,8 @@ body {
                 text-align: center;
             }
             .movie-statistic-box {
-                font-size: 0.7rem;
                 @include flex(center, column, center);
                 gap: 5px;
-                .extra-statistic-box {
-                    .movie-vote-box {
-                        @include vote(0.7rem, 0.7rem, -0.05rem, $statistic-text-color);
-                    }
-                }
             }
             .media-box {
                 .poster-box {
