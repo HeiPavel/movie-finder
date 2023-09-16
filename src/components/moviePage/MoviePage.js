@@ -58,21 +58,21 @@ export const MoviePage = () => {
             <>
                 <h2>{title}</h2>
                 <div className="movie-statistic-box">
-                    <div className="movie-vote-box">
-                        <i className="pi pi-star-fill"></i>{voteToDisplay} | {vote_count}
-                    </div>
                     <div className="extra-statistic-box">
-                        <div className="duration-box">
-                            <p>{timeTransform(runtime, content[language].time)}</p>
+                        <div className="movie-vote-box">
+                            <i className="pi pi-star-fill"></i>{voteToDisplay} | {vote_count}
                         </div>
                         <span>·</span>
-                        <div className="genres-box">
-                            <p>{genresToDisplay}</p>
+                        <div className="duration-box">
+                            <p>{timeTransform(runtime, content[language].time)}</p>
                         </div>
                         <span>·</span>
                         <div className="year-box">
                             <p>{release_date}</p>
                         </div>
+                    </div>
+                    <div className="genres-box">
+                        <p>{genresToDisplay}</p>
                     </div>
                 </div>
                 <div className="media-box">

@@ -399,9 +399,6 @@ body {
             gap: 20px;
             font-size: 0.8rem;
             color: $statistic-text-color;
-            .movie-vote-box {
-                @include vote(0.8rem, 0.8rem, -0.05rem, $statistic-text-color);
-            }
             .extra-statistic-box {
                 @include flex(normal, row, center);
                 gap: 7px;
@@ -409,20 +406,26 @@ body {
                     font-size: 1.5rem;
                     line-height: 1;
                 }
+                .movie-vote-box {
+                    @include vote(0.8rem, 0.8rem, -0.05rem, $statistic-text-color);
+                }
             }
         }
         .media-box {
             padding: 2rem 0;
-            @include flex(normal, row, normal);
-            gap: 30px;
+            width: 65%;
+            @include flex(space-between, row, normal);
             .poster-box {
-                @include size(260px, 390px);
+                width: 30%;
+                aspect-ratio: 2/3;
                 img {
                     @include size(100%, 100%);
+                    vertical-align: middle;
                 }
             }
             .trailer-box {
-                @include size(700px, 390px);
+                width: 67%;
+                aspect-ratio: 1.8;
                 @include flex(center, row, center);
                 /*Error or no trailer message*/
                 .text-message {
@@ -568,6 +571,22 @@ body {
             }
         }
     }
+
+    .movie-page-container {
+        .movie-page-content {
+            width: 90%;
+            margin-top: 15vh;
+            .media-box {
+                width: 90%;
+            }
+            .overview-box {
+                width: 80%;
+            }
+            .movie-actors {
+                width: 70%;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -675,6 +694,63 @@ body {
     .language-select {
         left: 7%;
     }
+
+    .movie-page-container {
+        .movie-page {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+        }
+        .movie-page-content {
+            width: 95%;
+            margin-top: 220px;
+            border-radius: 10px;
+            h2 {
+                font-size: 1.7rem;
+                padding: 1rem;
+                text-align: center;
+            }
+            .movie-statistic-box {
+                font-size: 0.7rem;
+                @include flex(center, column, center);
+                gap: 5px;
+                .extra-statistic-box {
+                    .movie-vote-box {
+                        @include vote(0.7rem, 0.7rem, -0.05rem, $statistic-text-color);
+                    }
+                }
+            }
+            .media-box {
+                .poster-box {
+                    display: none;
+                }
+                .trailer-box {
+                    width: 100%;
+                }
+            }
+            .overview-box, .movie-actors {
+                width: 90%;
+            }
+            .movie-actors {
+                padding-top: 2rem;
+            }
+        }
+        .back-button-container {
+            top: 1rem;
+            .p-button {
+                padding: 0;
+                @include size(2rem, 2rem);
+                @include flex(center, row, center);
+                .p-button-label {
+                    display: none;
+                }
+                .p-button-icon-left {
+                    margin: 0;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 440px) {
@@ -700,6 +776,12 @@ body {
     .sort-container {
         padding-bottom: 2rem;
     }
+
+    .movie-page-container {
+        .movie-page-content {
+            margin-top: 185px;
+        }
+    }
 }
 
 @media only screen and (max-width: 360px) {
@@ -717,6 +799,15 @@ body {
             width: 300px;
             .p-sidebar-content {
                 padding: 0.75rem 0;
+            }
+        }
+    }
+
+    .movie-page-container {
+        .movie-page-content {
+            margin-top: 160px;
+            .movie-actors {
+                width: 98%;
             }
         }
     }
