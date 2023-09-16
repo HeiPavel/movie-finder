@@ -713,6 +713,12 @@ body {
             .movie-statistic-box {
                 @include flex(center, column, center);
                 gap: 5px;
+                .genres-box {
+                    padding: 0 0.3rem;
+                    p {
+                        text-align: center;
+                    }
+                }
             }
             .media-box {
                 .poster-box {
