@@ -714,7 +714,7 @@ body {
                 @include flex(center, column, center);
                 gap: 5px;
                 .genres-box {
-                    padding: 0 0.3rem;
+                    padding: 0 1rem;
                     p {
                         text-align: center;
                     }
@@ -733,6 +733,23 @@ body {
             }
             .movie-actors {
                 padding-top: 2rem;
+            }
+            /*Skeleton*/
+            .title-skeleton, .statistic-skeleton, .media-box-skeleton, .overview-skeleton, .actors-label-skeleton-box, .actors-box-skeleton {
+                width: 90%;
+            }
+            .media-box-skeleton {
+                .poster-skeleton {
+                    display: none;
+                }
+                .trailer-skeleton {
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 1.8;
+                }
+            }
+            .overview-skeleton {
+                margin: 0;
             }
         }
         .back-button-container {
