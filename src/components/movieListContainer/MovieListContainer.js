@@ -31,9 +31,20 @@ export const MovieListContainer = () => {
     }
 
     useEffect(() => {
+        const moviesContainer = document.getElementsByClassName('movies-container')[0];
+        const handleScroll = (event) => window.sessionStorage.setItem('scrollPosition', event.target.scrollTop);
+        moviesContainer.addEventListener('scroll', handleScroll);
+        return () => moviesContainer.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+        if (isLoadingAllowed && searchParams.page === 1) window.sessionStorage.removeItem('scrollPosition');
+        if (!isLoadingAllowed) {
+            const moviesContainer = document.getElementsByClassName('movies-container');
+            const currentScrollPosition = window.sessionStorage.getItem('scrollPosition') || 0;
+            moviesContainer[0].scroll({top: currentScrollPosition, behavior: "instant"});
+        }
         if (isLoadingAllowed) dispatch(loadMovies(searchParams));
-        const moviesContainer = document.getElementsByClassName('movies-container');
-        if (searchParams.page === 1) moviesContainer[0].scroll({top: 0});
     }, [dispatch, searchParams, isLoadingAllowed]);
 
     return (

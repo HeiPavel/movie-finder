@@ -177,6 +177,7 @@ p, h2 {
             }
             input[type=text]::placeholder, .p-multiselect-label.p-placeholder, .p-dropdown-label.p-placeholder {
                 color: $secondary-text-color;
+                opacity: 1;
             }
             .p-multiselect-clear-icon, .p-dropdown-clear-icon {
                 right: 2rem;
@@ -430,6 +431,8 @@ body {
                 @include flex(center, row, center);
                 /*Error or no trailer message*/
                 .text-message {
+                    padding: 0 1.5rem;
+                    text-align: center;
                     font-size: 1.5rem;
                     color: $statistic-text-color;
                 }
@@ -745,6 +748,9 @@ body {
                 }
                 .trailer-box {
                     width: 100%;
+                    .text-message {
+                        font-size: 1.2rem;
+                    }
                 }
             }
             .overview-box, .movie-actors {
@@ -752,6 +758,12 @@ body {
             }
             .movie-actors {
                 padding-top: 2rem;
+                .actors-box {
+                    .text-message {
+                        padding: 0 1rem;
+                        font-size: 1rem;
+                    }
+                }
             }
             /*Skeleton*/
             .title-skeleton, .statistic-skeleton, .media-box-skeleton, .overview-skeleton, .actors-label-skeleton-box, .actors-box-skeleton {
