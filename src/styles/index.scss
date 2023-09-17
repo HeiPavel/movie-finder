@@ -45,6 +45,7 @@ p, h2 {
         grid-template-columns: repeat(auto-fill, 240px);
         gap: 30px;
         justify-content: center;
+        align-content: start;
         @include size(90%, 83vh);
         overflow: hidden scroll;
         scroll-behavior: smooth;

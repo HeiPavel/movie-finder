@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMovies, selectSearchParams, loadMovies, addPageAndRestSortTerm, selectLanguage, selectAllowLoading } from "../../features/movies/moviesSlise";
+import { selectMovies, selectSearchParams, loadMovies, addPageAndRestSortTerm, selectLanguage, selectAllowLoading, selectSortBy } from "../../features/movies/moviesSlise";
 import { Movie } from "../movie/Movie";
 import {Skeleton} from 'primereact/skeleton';
 import { ErrorOrEmpty } from "../errorOrEmpty/ErrorOrEmpty";
@@ -12,6 +12,7 @@ export const MovieListContainer = () => {
     const language = useSelector(selectLanguage);
     const content = useSelector(selectContent);
     const isLoadingAllowed = useSelector(selectAllowLoading);
+    const sortedBy = useSelector(selectSortBy);
     const dispatch = useDispatch();
 
     const loading = () => {
@@ -38,14 +39,14 @@ export const MovieListContainer = () => {
     }, []);
 
     useEffect(() => {
-        if (isLoadingAllowed && searchParams.page === 1) window.sessionStorage.removeItem('scrollPosition');
+        if ((isLoadingAllowed && searchParams.page === 1) || sortedBy) window.sessionStorage.removeItem('scrollPosition');
         if (!isLoadingAllowed) {
             const moviesContainer = document.getElementsByClassName('movies-container');
             const currentScrollPosition = window.sessionStorage.getItem('scrollPosition') || 0;
             moviesContainer[0].scroll({top: currentScrollPosition, behavior: "instant"});
         }
         if (isLoadingAllowed) dispatch(loadMovies(searchParams));
-    }, [dispatch, searchParams, isLoadingAllowed]);
+    }, [dispatch, searchParams, isLoadingAllowed, sortedBy]);
 
     return (
         <div className="background-box">
