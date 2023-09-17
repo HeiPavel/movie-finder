@@ -68,7 +68,7 @@ export const MoviePage = () => {
                         </div>
                         <span>·</span>
                         <div className="year-box">
-                            <p>{release_date}</p>
+                            <p>{release_date ? release_date : content[language].noReleaseDateMessage}</p>
                         </div>
                     </div>
                     <div className="genres-box">
@@ -111,7 +111,7 @@ export const MoviePage = () => {
 
     return (
         <div className="movie-page-container">
-            <div className="movie-page" style={{backgroundImage: `url(${backdrop})`}}>
+            <div className="movie-page" style={{backgroundImage: backdrop ? `url(${backdrop})` : 'none'}}>
             </div>
             <div className="movie-page-content">
                 {isLoading ? <MoviePageSkeleton/> : loadedMovieContent()}

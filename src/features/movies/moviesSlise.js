@@ -15,10 +15,10 @@ export const loadMovies = createAsyncThunk('movies/loadMovies',
         obj.movies = response.data.movies.filter(movie => movie.poster_path).map(movie => {
             return {
                 title: movie.title,
-                backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+                backdrop: movie.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : null,
                 overview: movie.overview,
                 poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-                release_date: new Date(movie.release_date).getFullYear(),
+                release_date: movie.release_date ? new Date(movie.release_date).getFullYear() : null,
                 vote_average: movie.vote_average,
                 vote_count: movie.vote_count,
                 genre: movie.genre_ids,
