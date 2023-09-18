@@ -700,7 +700,7 @@ body {
             padding: 30px 0;
             .multiselect-box {
                 .select-container {
-                    width: 100%;
+                    width: calc(100% - 35px);
                 }
             }
         }
