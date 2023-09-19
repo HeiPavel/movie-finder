@@ -115,6 +115,9 @@ export const moviesSlice = createSlice({
         },
         toggleAllowLoading: (state) => {
             state.allowLoading = true;
+        },
+        resetSortedBy: (state) => {
+            state.sortedBy = '';
         }
     },
     extraReducers: (builder) => {
@@ -159,7 +162,7 @@ export const selectSearchParams = (state) => state.movies.searchParams;
 export const selectSortTerm = (state) => state.movies.sortTerm;
 export const selectSortBy = (state) => state.movies.sortedBy;
 export const selectAllowLoading = (state) => state.movies.allowLoading;
-export const {addPage, updateSearchParams, resetMovies, changeSortTerm, resetSortTerm, sortByTerm, toggleLanguage, toggleAllowLoading} = moviesSlice.actions;
+export const {addPage, updateSearchParams, resetMovies, changeSortTerm, resetSortTerm, sortByTerm, toggleLanguage, toggleAllowLoading, resetSortedBy} = moviesSlice.actions;
 export const resetAndUpdate = (payload) => {
     return dispatch => {
         dispatch(resetMovies());
@@ -176,6 +179,7 @@ export const addPageAndRestSortTerm = () => {
         dispatch(toggleAllowLoading());
         dispatch(addPage());
         dispatch(resetSortTerm());
+        dispatch(resetSortedBy());
     } 
 }
 
