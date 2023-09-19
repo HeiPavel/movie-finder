@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchDetails } from "../../util/moviePageRequest";
-import { resetSortedBy } from "../movies/moviesSlise";
 
 export const loadMovieData = createAsyncThunk('moviePage/loadMovieData',
     async ({id, language}) => {
@@ -49,11 +48,5 @@ export const moviePageSlice = createSlice({
 export const selectMovieData = (state) => state.moviePage;
 
 export const {resetMovieInfo} = moviePageSlice.actions;
-export const resetMovieInfoAndSortedBy = () => {
-    return dispatch => {
-        dispatch(resetMovieInfo());
-        dispatch(resetSortedBy());
-    }
-}
 
 export default moviePageSlice.reducer;

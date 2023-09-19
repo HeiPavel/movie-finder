@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMovies, selectLanguage } from "../../features/movies/moviesSlise";
+import { selectMovies, selectLanguage, resetSortedBy } from "../../features/movies/moviesSlise";
 import { useParams, useNavigate } from "react-router-dom";
-import { loadMovieData, selectMovieData, resetMovieInfoAndSortedBy } from "../../features/moviePage/moviePageSlice";
+import { loadMovieData, selectMovieData, resetMovieInfo } from "../../features/moviePage/moviePageSlice";
 import { roundVote } from "../../util/helper/voteRound";
 import { timeTransform } from "../../util/helper/minToHours";
 import { selectGenres } from "../../features/genres/genresSlice";
@@ -46,11 +46,12 @@ export const MoviePage = () => {
 
     const handleBack = () => {
         navigate('/');
-        dispatch(resetMovieInfoAndSortedBy());
+        dispatch(resetMovieInfo());
     }
 
     useEffect(() => {
         dispatch(loadMovieData({id, language}));
+        dispatch(resetSortedBy());
     }, [dispatch, id, language]);
 
     const loadedMovieContent = () => {
