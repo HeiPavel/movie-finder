@@ -38,6 +38,7 @@ const fetchTrailer = async (apiKey, baseUrl, id, language) => {
             if (video.site !== 'YouTube') continue;
             if (!key) {
                 key = video.key;
+                if (video.type.toLowerCase() === 'trailer') break;
             } else {
                 if (video.type.toLowerCase() === 'trailer' && !video.name.endsWith('2')) {
                     key = video.key;
