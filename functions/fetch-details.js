@@ -36,16 +36,12 @@ const fetchTrailer = async (apiKey, baseUrl, id, language) => {
         let key = '';
         for (const video of arrayOfVideos) {
             if (video.site !== 'YouTube') continue;
-            if (!key) {
+            if (!key) key = video.key;
+            if (video.type.toLowerCase() === 'trailer' && !video.name.endsWith('2')) {
                 key = video.key;
-                if (video.type.toLowerCase() === 'trailer') break;
+                break;
             } else {
-                if (video.type.toLowerCase() === 'trailer' && !video.name.endsWith('2')) {
-                    key = video.key;
-                    break;
-                } else {
-                    if (video.type.toLowerCase() === 'teaser') key = video.key;
-                }
+                if (video.type.toLowerCase() === 'teaser') key = video.key;
             }
         }
         return key;
