@@ -97,8 +97,6 @@ p, h2 {
                         @include vote(0.8rem, 0.8rem, -0.1rem, $white-text-color);
                     }
                     .genres-box {
-                        width: 50%;
-                        word-spacing: 3rem;
                         text-align: right;
                         color: $secondary-text-color;
                     }
@@ -857,6 +855,22 @@ body {
             margin-top: 160px;
             .movie-actors {
                 width: 98%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .background-box {
+        .movies-container {
+            .movie-card {
+                .movie-description {
+                    .statistic-box {
+                        .genres-box {
+                            font-size: 0.6rem;
+                        }
+                    }
+                }
             }
         }
     }

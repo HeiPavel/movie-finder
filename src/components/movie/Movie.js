@@ -7,7 +7,7 @@ import { roundVote } from "../../util/helper/voteRound";
 export const Movie = ({movie}) => {
     const {title, poster, genre, vote_average, vote_count} = movie;
     const genres = useSelector(selectGenres);
-    const genresToDisplay = genres.filter(el => genre.includes(el.id)).slice(0,2).map(el => el.name).join(' ');
+    const genresToDisplay = genres.filter(el => genre.includes(el.id)).slice(0,2).map(el => el.name);
     const voteToDisplay = roundVote(vote_average);
 
     return (
@@ -18,7 +18,9 @@ export const Movie = ({movie}) => {
                     <p className="title">{title}</p>
                     <div className="statistic-box">
                         <p className="vote-box"><i className="pi pi-star-fill"></i>{voteToDisplay}|{vote_count}</p>
-                        <p className="genres-box">{genresToDisplay}</p>
+                        <div className="genres-box">
+                            {genresToDisplay.map((genre, index) => (<p key={index}>{genre}</p>))}
+                        </div>
                     </div>
                 </figcaption>
             </figure>
