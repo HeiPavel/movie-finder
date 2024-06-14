@@ -46,7 +46,18 @@ export const SearchActors = () => {
     }
 
     useEffect(() => {
-        term ? dispatch(loadActors({term, language})) : dispatch(clearActors());
+        let timeoutId;
+        if (term) {
+            timeoutId = setTimeout(() => {
+                dispatch(loadActors({term, language}));
+            }, 300);
+        } else {
+            dispatch(clearActors());
+        }
+
+        return () => {
+            if (timeoutId) clearTimeout(timeoutId);
+        }
     }, [dispatch, term, language]);
 
     return (
